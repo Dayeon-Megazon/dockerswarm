@@ -11,7 +11,7 @@ It will improve your skills.*
 If you want to do this, you need to create a GCP (Google Cloud Platform)!
 
 
-- make instance
+- Make instance
 
 | Name                  | Machine type        | Access scopes     | Firewall |
 |-------------------    | -------------------| -------------------| -------------------|
@@ -30,7 +30,7 @@ worker2   us-central1-a  n1-standard-1               10.128.0.4   35.184.237.189
 
 ```
 
--Make swarm
+- Make swarm
 ```
 $ gcloud compute ssh manager1
 
@@ -67,7 +67,7 @@ To add a worker to this swarm, run the following command:
 
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
-- Check swarm mmode 
+- Check swarm mode 
 ```
 $ docker info
 .
