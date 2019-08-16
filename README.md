@@ -6,7 +6,7 @@ It will improve your skills.*
 
 -----
 
-**1. Make Google Compute Engine(GCE)** 
+## Make Google Compute Engine(GCE) 
 
 If you want to do this, you need to create a GCP (Google Cloud Platform)!
 
@@ -30,7 +30,7 @@ worker2   us-central1-a  n1-standard-1               10.128.0.4   35.184.237.189
 
 ```
 
-# Make swarm
+## Make swarm
 ```
 $ gcloud compute ssh manager1
 
@@ -43,7 +43,7 @@ Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-1037-gcp x86_64)
 Last login: Fri Aug 16 06:39:07 2019 from 121.134.158.33
 
 ```
-# Install docker & docker-compose 
+## Install docker & docker-compose 
 ```
 $ sudo snap install docker
 .
@@ -55,7 +55,7 @@ $ docker-compose -v
 docker-compose version 1.22.0, build unknown
 ```
 
-# Initialization
+## Initialization
 ```
 $ sudo docker swarm init --advertise-addr [your-manager1-ID]
 
@@ -67,7 +67,7 @@ To add a worker to this swarm, run the following command:
 
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
-# Check swarm mode 
+## Check swarm mode 
 ```
 $ docker info
 .
@@ -97,7 +97,7 @@ Swarm: active
  Manager Addresses:
   35.224.82.148:2377
 ```
-# join
+## join
 
 ```
 $ sudo docker swarm join-token worker
@@ -107,7 +107,7 @@ To add a worker to this swarm, run the following command:
     docker swarm join --token SWMTKN-1-0vske328qpeaq4rg5nl83ad7ereqxm9hhpjq9yzrv9i37aaw0f-f1f1vkw2807rsk3j2irhqlaa4 35.224.82.148:2377
 
 ```
-# Connect to Worker1
+## Connect to Worker1
 ```
 $ gcloud compute ssh worker1
 
@@ -122,12 +122,12 @@ Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-1037-gcp x86_64)
 Last login: Fri Aug 16 07:21:33 2019 from 35.224.82.148
 ```
 
-# Docker swarm join (worker1)
+## Docker swarm join (worker1)
 ```
 root@worker1:~# docker swarm join --token SWMTKN-1-0vske328qpeaq4rg5nl83ad7ereqxm9hhpjq9yzrv9i37aaw0f-f1f1vkw2807rsk3j2irhqlaa4 35.224.82.148:2377
 
 ```
-# Connect to worker2
+## Connect to worker2
 ```
 $ gcloud compute ssh worker2
 
@@ -137,16 +137,16 @@ Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-1037-gcp x86_64)
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/advantage
 ```
-# Docker swarm join (worker2)
+## Docker swarm join (worker2)
 ```
 root@worker2:~# docker swarm join --token SWMTKN-1-0vske328qpeaq4rg5nl83ad7ereqxm9hhpjq9yzrv9i37aaw0f-f1f1vkw2807rsk3j2irhqlaa4 35.224.82.148:2377
 ```
-# Check to Swarm Active
+## Check to Swarm Active
 ```
 root@worker1:~# docker info
 root@worker2:~# docker info
 ```
-# Check node
+## Check node
 ```
 $ docker node ls
 
