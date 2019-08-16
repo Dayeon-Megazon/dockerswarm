@@ -124,8 +124,9 @@ Last login: Fri Aug 16 07:21:33 2019 from 35.224.82.148
 
 ## Docker swarm join (worker1)
 ```
-root@worker1:~# docker swarm join --token SWMTKN-1-0vske328qpeaq4rg5nl83ad7ereqxm9hhpjq9yzrv9i37aaw0f-f1f1vkw2807rsk3j2irhqlaa4 35.224.82.148:2377
+root@worker1:~#  docker swarm join --token SWMTKN-1-1y66zg6hsrc8haclmlrrrf7dyczl0ozwr0tgwg4iokoxenmy6k-a5hr1yz3fba67xk4wzkdw5b1t 10.128.0.2:2377
 
+This node joined a swarm as a worker.
 ```
 ## Connect to worker2
 ```
@@ -139,18 +140,40 @@ Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-1037-gcp x86_64)
 ```
 ## Docker swarm join (worker2)
 ```
-root@worker2:~# docker swarm join --token SWMTKN-1-0vske328qpeaq4rg5nl83ad7ereqxm9hhpjq9yzrv9i37aaw0f-f1f1vkw2807rsk3j2irhqlaa4 35.224.82.148:2377
+root@worker2:~#  docker swarm join --token SWMTKN-1-1y66zg6hsrc8haclmlrrrf7dyczl0ozwr0tgwg4iokoxenmy6k-a5hr1yz3fba67xk4wzkdw5b1t 10.128.0.2:2377
+
+This node joined a swarm as a worker.
 ```
 ## Check to Swarm Active
 ```
 root@worker1:~# docker info
+.
+.
+Swarm: active
+ NodeID: vhp68ltkciqszo8mk36j6syx6
+ Is Manager: false
+ Node Address: 10.128.0.3
+ Manager Addresses:
+  10.128.0.2:2377
+```
+```
 root@worker2:~# docker info
+.
+.
+Swarm: active
+ NodeID: f62333wn4ygsemu5ubnmg1gnc
+ Is Manager: false
+ Node Address: 10.128.0.4
+ Manager Addresses:
+  10.128.0.2:2377
 ```
 ## Check node
 ```
 $ docker node ls
 
 ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
-v7vmfaovy835x68mgu01r1es9 *   manager1            Ready               Active              Leader              18.06.1-ce
+s29azx34toxyylnrtvtf6c02q *   manager1            Ready               Active              Leader              18.06.1-ce
+vhp68ltkciqszo8mk36j6syx6     worker1             Ready               Active                                  18.06.1-ce
+f62333wn4ygsemu5ubnmg1gnc     worker2             Ready               Active                                  18.06.1-ce
 
 ```
