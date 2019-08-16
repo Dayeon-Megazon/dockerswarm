@@ -123,6 +123,9 @@ Last login: Fri Aug 16 07:21:33 2019 from 35.224.82.148
 
 ## Docker swarm join (worker1)
 ```
+$ docker swarm join -- token [your-token-value] [your-manager1-ip]:[port-number]
+```
+```
 root@worker1:~#  docker swarm join --token SWMTKN-1-1y66zg6hsrc8haclmlrrrf7dyczl0ozwr0tgwg4iokoxenmy6k-a5hr1yz3fba67xk4wzkdw5b1t 10.128.0.2:2377
 .
 .
