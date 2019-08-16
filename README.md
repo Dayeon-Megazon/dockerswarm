@@ -141,3 +141,16 @@ Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-1037-gcp x86_64)
 ```
 root@worker2:~# docker swarm join --token SWMTKN-1-0vske328qpeaq4rg5nl83ad7ereqxm9hhpjq9yzrv9i37aaw0f-f1f1vkw2807rsk3j2irhqlaa4 35.224.82.148:2377
 ```
+- Check to Swarm Active
+```
+root@worker1:~# docker info
+root@worker2:~# docker info
+```
+- Check node
+```
+$ docker node ls
+
+ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
+v7vmfaovy835x68mgu01r1es9 *   manager1            Ready               Active              Leader              18.06.1-ce
+
+```
