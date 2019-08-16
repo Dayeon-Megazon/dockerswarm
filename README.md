@@ -97,3 +97,51 @@ Swarm: active
  Manager Addresses:
   35.224.82.148:2377
 ```
+- join
+
+```
+$ sudo docker swarm join-token worker
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-0vske328qpeaq4rg5nl83ad7ereqxm9hhpjq9yzrv9i37aaw0f-f1f1vkw2807rsk3j2irhqlaa4 35.224.82.148:2377
+
+```
+- Connect to Worker1
+```
+$ gcloud compute ssh worker1
+
+Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-1037-gcp x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+.
+.
+.
+Last login: Fri Aug 16 07:21:33 2019 from 35.224.82.148
+```
+
+- Docker swarm join (worker1)
+```
+# exit to worker1
+
+$ sudo docker swarm join --token SWMTKN-1-0vske328qpeaq4rg5nl83ad7ereqxm9hhpjq9yzrv9i37aaw0f-f1f1vkw2807rsk3j2irhqlaa4 35.224.82.148:2377
+
+```
+-  Connect to worker2
+```
+$ gcloud compute ssh worker2
+
+Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-1037-gcp x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+```
+ - Docker swarm join (worker2)
+```
+# exit to worker2
+
+$ sudo docker swarm join --token SWMTKN-1-0vske328qpeaq4rg5nl83ad7ereqxm9hhpjq9yzrv9i37aaw0f-f1f1vkw2807rsk3j2irhqlaa4 35.224.82.148:2377
+```
