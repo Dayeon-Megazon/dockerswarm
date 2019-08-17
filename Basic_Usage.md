@@ -1,3 +1,3 @@
-# Basic Usage to Docker Swarm
+# Basic Usage of Docker Swarm
 
 ## Make Docker Swarm
