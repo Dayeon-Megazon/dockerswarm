@@ -57,7 +57,7 @@ docker-compose version 1.22.0, build unknown
 
 ## Initialization
 ```
-$ sudo docker swarm init --advertise-addr [your-manager1-ID]
+$ sudo docker swarm init --advertise-addr [your-master1-Public-IP]
 .
 .
 Swarm initialized: current node (v7vmfaovy835x68mgu01r1es9) is now a manager.
