@@ -20,11 +20,11 @@
 > Tip: Services -> EC2 Dashboard -> Right Click Instance -> Click "Connections"
 
 ```
-$sudo ssh -i "key-pair-path" ec2-user@<instance-address>
+$ sudo ssh -i "key-pair-path" ec2-user@<instance-address>
 ```
 
 ```
-$ssh -i "dayeon_docker.pem" ec2-user@ec2-54-180-188-231.ap-northeast-2.compute.amazonaws.com
+$ ssh -i "dayeon_docker.pem" ec2-user@ec2-54-180-188-231.ap-northeast-2.compute.amazonaws.com
 
 
 
@@ -45,6 +45,7 @@ $ sudo yum -y install docker
 ```
 ```
 $ docker -v
+
 Docker version 18.09.1, build 4c52b90
 ```
 
@@ -60,6 +61,7 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 ```
 ```
 $ docker-compose -v
+
 docker-compose version 1.25.0-rc2, build 661ac20e
 ```
 > Tip: Docker and docker-compose must be installed on master1, worker1, worker2.
@@ -115,7 +117,7 @@ Join another node with the token above.
 > tip : 2377 port must be open.
 
 ```
-$ docker swarm join -- token [your-token-value] [your-manager1-IP]:[port-number 2377]
+$ docker swarm join -- token [your-token-value] [your-manager1-ip]:[port-number 2377]
 ```
 ```
 worker1:~$ docker swarm join --token SWMTKN-1-1e3rc51slo80smjkgukakdfuq7voxohs037y2cm54jnny9fltv-93mn4kp4eaxu44sfaq40shp5u 13.125.178.3:2377
