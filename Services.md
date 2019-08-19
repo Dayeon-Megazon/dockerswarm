@@ -9,14 +9,13 @@
 ```
 $ docker service create [OPTIONS] IMAGE [COMMAND] [ARG...]
 ```
+> 
 ```
-$ docker service create --name nginx_service --replicas 3 nginx
+$docker service create --name web httpd
 
-i2dlt5gw561zga0k8hxch5yhu
-overall progress: 3 out of 3 tasks 
-1/3: running   [==================================================>] 
-2/3: running   [==================================================>] 
-3/3: running   [==================================================>] 
+xlqf7myjqi688ik5xnla1c2oz
+overall progress: 1 out of 1 tasks 
+1/1: running   [==================================================>] 
 verify: Service converged 
 ```
 
@@ -24,25 +23,23 @@ verify: Service converged
 ```
 $ docker service ls
 
-ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
-i2dlt5gw561z        nginx_service       replicated          0/3                 nginx:latest    
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS    
+xlqf7myjqi68        web                 replicated          0/1                 httpd:latest        
 .
 .
-.
-ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
-i2dlt5gw561z        nginx_service       replicated          3/3                 nginx:latest    
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS    
+xlqf7myjqi68        web                 replicated          1/1                 httpd:latest        
 ```
-> Tip : check more detail
 
+> Tip : check more detail
 ```
 $ docker service ps [SERVICE]
 ```
 ```
-$ docker service ps nginx_service
-ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE        ERROR ...      
-dyg4u56g31q0        nginx_service.1     nginx:latest        ip-172-31-29-251    Running             Running 9 minutes ago
-kb5acm6p9j84        nginx_service.2     nginx:latest        ip-172-31-20-162    Running             Running 9 minutes ago
-n8nzhh2fm3zd        nginx_service.3     nginx:latest        ip-172-31-23-216    Running             Running 9 minutes ago     
+$ docker service ps web
+
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE            ERROR...
+wx6jrekulqwt        web.1               httpd:latest        ip-172-31-20-162    Running             Running 29 seconds ago              
 ```
 
 ## Docker Swarm Service Scale-out
@@ -50,9 +47,9 @@ n8nzhh2fm3zd        nginx_service.3     nginx:latest        ip-172-31-23-216    
 $ docker service scale SERVICE=REPLICAS [SERVICE=REPLICAS...]
 ```
 ```
-$ docker service scale nginx_service=3
+$ docker service scale web=3
 
-nginx_service scaled to 3
+web scaled to 3
 overall progress: 3 out of 3 tasks 
 1/3: running   [==================================================>] 
 2/3: running   [==================================================>] 
@@ -63,7 +60,7 @@ verify: Service converged
 $ docker service ls
 
 ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
-i2dlt5gw561z        nginx_service       replicated          3/3                 nginx:latest        
+xlqf7myjqi68        web                 replicated          3/3                 httpd:latest 
 ```
 ```
 $ for i in $(cat /etc/hosts | grep manager| awk '{print $1}')
@@ -72,10 +69,10 @@ $ for i in $(cat /etc/hosts | grep manager| awk '{print $1}')
 > done
 ```
 ```
-$ docker service ps nginx_service
-ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE       ERROR ...      
-dyg4u56g31q0        nginx_service.1     nginx:latest        ip-172-31-29-251    Running             Running 17 minutes ago
-kb5acm6p9j84        nginx_service.2     nginx:latest        ip-172-31-20-162    Running             Running 17 minutes ago 
-n8nzhh2fm3zd        nginx_service.3     nginx:latest        ip-172-31-23-216    Running             Running 17 minutes ago
+$ docker service ps web
 
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE             ERROR...
+wx6jrekulqwt        web.1               httpd:latest        ip-172-31-20-162    Running             Running about a minute ago
+vf7m5p3of4kl        web.2               httpd:latest        ip-172-31-29-251    Running             Running 53 seconds ago
+oix9zy3o8gtd        web.3               httpd:latest        ip-172-31-23-216    Running             Running 53 seconds ago 
 ```
