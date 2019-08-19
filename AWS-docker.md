@@ -101,12 +101,12 @@ Swarm: active
 .
 ```
 
-## Add a manager to this swarm
+## Add a worker to this swarm
 
 ```
 $ docker swarm join-token worker
 
-To add a manager to this swarm, run the following command:
+To add a worker to this swarm, run the following command:
 
     docker swarm join --token SWMTKN-1-1e3rc51slo80smjkgukakdfuq7voxohs037y2cm54jnny9fltv-93mn4kp4eaxu44sfaq40shp5u 13.125.178.3:2377
 ```
