@@ -79,7 +79,8 @@ To add a worker to this swarm, run the following command:
 
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
-
+ > Tip : master1, worker1, worker2 must do this step.
+ 
 ## Check Swarm Node
 
 ```
