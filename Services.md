@@ -6,7 +6,9 @@
 ## Configuring Services
 
 > start your master1 instance
-
+```
+$ docker service create [OPTIONS] IMAGE [COMMAND] [ARG...]
+```
 ```
 $ docker service create --name nginx_service --replicas 3 nginx
 
@@ -17,9 +19,26 @@ overall progress: 3 out of 3 tasks
 3/3: running   [==================================================>] 
 verify: Service converged 
 ```
+
+## Check Docker Service
 ```
 $ docker service ls
 
 ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+i2dlt5gw561z        nginx_service       replicated          0/3                 nginx:latest    
+.
+.
+.
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
 i2dlt5gw561z        nginx_service       replicated          3/3                 nginx:latest    
+```
+> Tip : check more detail
+
+```
+$ docker service ps [SERVICE]
+```
+```
+$ docker service ps nginx_service
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE        ERROR ...      
+dyg4u56g31q0        nginx_service.1     nginx:latest        ip-172-31-29-251    Running             Running 9 minutes ago                kb5acm6p9j84        nginx_service.2     nginx:latest        ip-172-31-20-162    Running             Running 9 minutes ago               n8nzhh2fm3zd        nginx_service.3     nginx:latest        ip-172-31-23-216    Running             Running 9 minutes ago         
 ```
