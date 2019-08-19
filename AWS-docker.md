@@ -7,9 +7,9 @@
 
 | Name                  | AMI       | Instance Type     | Firewall |
 |-------------------    | -------------------| -------------------| -------------------|
-| master1  | Amazon Linux AMI 2018.03.0 (HVM), SSD Volume Type | t2.medium  | Allow HTTP,HTTPS |
-| worker1  | Amazon Linux AMI 2018.03.0 (HVM), SSD Volume Type | t2.medium  | Allow HTTP,HTTPS |
-| worker2  | Amazon Linux AMI 2018.03.0 (HVM), SSD Volume Type | t2.medium  | Allow HTTP,HTTPS |
+| master1  | Amazon Linux AMI 2018.03.0 (HVM), SSD Volume Type | t2.medium  | Allow 2377 Port |
+| worker1  | Amazon Linux AMI 2018.03.0 (HVM), SSD Volume Type | t2.medium  | Allow 2377 Port |
+| worker2  | Amazon Linux AMI 2018.03.0 (HVM), SSD Volume Type | t2.medium  | Allow 2377 Port |
 
 ## Create EIP and Attach EIP to EC2 instance
 
