@@ -44,3 +44,29 @@ https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
 8 package(s) needed for security, out of 11 available
 Run "sudo yum update" to apply all updates.
 ```
+
+## Install docker
+
+```
+$ sudo yum -y upgrade
+$ sudo yum -y install docker
+```
+```
+$ docker -v
+Docker version 18.09.1, build 4c52b90
+```
+
+```
+$ sudo service docker start
+$ sudo usermod -aG docker ec2-user
+```
+## Install docker-compose
+
+```
+$ sudo curl -L https://github.com/docker/compose/releases/download/1.25.0-rc2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+$ sudo chmod +x /usr/local/bin/docker-compose
+```
+```
+$ docker-compose -v
+docker-compose version 1.25.0-rc2, build 661ac20e
+```
