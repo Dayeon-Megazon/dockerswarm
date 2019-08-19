@@ -79,7 +79,7 @@ To add a worker to this swarm, run the following command:
 
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
- > Tip : master1, worker1, worker2 must do this step.
+ > Tip : only master1 must do this step. 
  
 ## Check Swarm Node
 
@@ -113,6 +113,7 @@ To add a manager to this swarm, run the following command:
 
 Join another node with the token above.
 > tip : 2377 port must be open.
+
 ```
 $ docker swarm join -- token [your-token-value] [your-manager1-public-IP]:[port-number 2377]
 ```
