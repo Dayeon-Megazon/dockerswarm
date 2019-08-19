@@ -40,5 +40,8 @@ $ docker service ps [SERVICE]
 ```
 $ docker service ps nginx_service
 ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE        ERROR ...      
-dyg4u56g31q0        nginx_service.1     nginx:latest        ip-172-31-29-251    Running             Running 9 minutes ago                kb5acm6p9j84        nginx_service.2     nginx:latest        ip-172-31-20-162    Running             Running 9 minutes ago               n8nzhh2fm3zd        nginx_service.3     nginx:latest        ip-172-31-23-216    Running             Running 9 minutes ago         
+dyg4u56g31q0        nginx_service.1     nginx:latest        ip-172-31-29-251    Running             Running 9 minutes ago
+kb5acm6p9j84        nginx_service.2     nginx:latest        ip-172-31-20-162    Running             Running 9 minutes ago
+n8nzhh2fm3zd        nginx_service.3     nginx:latest        ip-172-31-23-216    Running             Running 9 minutes ago     
+
 ```
