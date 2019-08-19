@@ -124,6 +124,9 @@ This node joined a swarm as a worker.
 worker2:~$ docker swarm join --token SWMTKN-1-1e3rc51slo80smjkgukakdfuq7voxohs037y2cm54jnny9fltv-93mn4kp4eaxu44sfaq40shp5u 13.125.178.3:2377
 This node joined a swarm as a worker.
 ```
+
+## Check docker node
+
 ```
 master1:~$ docker node ls
 
