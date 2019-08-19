@@ -11,7 +11,7 @@ $ docker service create [OPTIONS] IMAGE [COMMAND] [ARG...]
 ```
 > 
 ```
-$docker service create --name web httpd
+master1:~$ docker service create --name web httpd
 
 xlqf7myjqi688ik5xnla1c2oz
 overall progress: 1 out of 1 tasks 
@@ -63,12 +63,6 @@ ID                  NAME                MODE                REPLICAS            
 xlqf7myjqi68        web                 replicated          3/3                 httpd:latest 
 ```
 ```
-$ for i in $(cat /etc/hosts | grep manager| awk '{print $1}')
-> do
-> ssh ec2-user@ip-172-31-20-162 "docker ps -a"
-> done
-```
-```
 $ docker service ps web
 
 ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE             ERROR...
@@ -92,4 +86,10 @@ ID                  NAME                MODE                REPLICAS            
 ```
 $ docker service ps web
 no such service: web
+```
+## Uninstall Docker Swarm
+```
+$ docker swarm leave -f
+
+Node left the swarm.
 ```
