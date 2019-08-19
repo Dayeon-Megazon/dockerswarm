@@ -1,23 +1,15 @@
-# docker on AWS
+# Make docker on AWS
 
 *Let's make docker on AWS*
 
 ---
 ## make instance on EC2
 
-|         Setting          |  Value                |
-|------------------- | -------------------|
-| AMI  | Amazon Linux AMI 2018.03.0 (HVM), SSD Volume Type |
-| Type                | t2.medium                 |
-
-## Security Group
-
-| Protocol  | Port                |Role|
-|------------------- | -------------------|-------------------|
-| TCP  | 6379 | Redis|
-| TCP  | 3306 | MariaDB|
-| TCP  | 9092 | Kafka|
-| TCP  | 2181 | Zookeeper|
+| Name                  | AMI       | Instance Type     | Firewall |
+|-------------------    | -------------------| -------------------| -------------------|
+| master1  | Amazon Linux AMI 2018.03.0 (HVM), SSD Volume Type | t2.medium  | Allow HTTP,HTTPS |
+| worker1  | Amazon Linux AMI 2018.03.0 (HVM), SSD Volume Type | t2.medium  | Allow HTTP,HTTPS |
+| worker2  | Amazon Linux AMI 2018.03.0 (HVM), SSD Volume Type | t2.medium  | Allow HTTP,HTTPS |
 
 ## Create EIP and Attach EIP to EC2 instance
 
@@ -69,4 +61,20 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 ```
 $ docker-compose -v
 docker-compose version 1.25.0-rc2, build 661ac20e
+```
+> tip: You must be installed ( master1 & worker1 & worker2 )
+
+## Initialization
+```
+$ sudo docker swarm init --advertise-addr [your-manager1-ID]
+```
+```
+$ sudo docker swarm init --advertise-addr 54.180.188.231
+Swarm initialized: current node (hwmdgy2a2vu3aoa98ehi1hu4u) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-3dlz3z61zp569hqespolbigfnn5yb8j6wluo268glfnxmbl9su-4lktxp5fl5gj501jd80mvopnz 54.180.188.231:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
