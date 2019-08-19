@@ -66,11 +66,11 @@ docker-compose version 1.25.0-rc2, build 661ac20e
 
 ## Initialization
 ```
-$ sudo docker swarm init --advertise-addr [your-Master1-Public-IP]
+$ sudo docker swarm init --advertise-addr [your-master1-ip]
 ```
 *example*
 ```
-$ sudo docker swarm init --advertise-addr 54.180.188.231
+master1:~$ sudo docker swarm init --advertise-addr 54.180.188.231
 Swarm initialized: current node (hwmdgy2a2vu3aoa98ehi1hu4u) is now a manager.
 
 To add a worker to this swarm, run the following command:
@@ -102,20 +102,20 @@ Swarm: active
 ## Add a manager to this swarm
 
 ```
-$ docker swarm join-token manager
+$ docker swarm join-token worker
 
 To add a manager to this swarm, run the following command:
 
     docker swarm join --token SWMTKN-1-1e3rc51slo80smjkgukakdfuq7voxohs037y2cm54jnny9fltv-93mn4kp4eaxu44sfaq40shp5u 13.125.178.3:2377
 ```
 
-## Join with another node
+## Join with another worker node
 
 Join another node with the token above.
 > tip : 2377 port must be open.
 
 ```
-$ docker swarm join -- token [your-token-value] [your-manager1-public-IP]:[port-number 2377]
+$ docker swarm join -- token [your-token-value] [your-manager1-IP]:[port-number 2377]
 ```
 ```
 worker1:~$ docker swarm join --token SWMTKN-1-1e3rc51slo80smjkgukakdfuq7voxohs037y2cm54jnny9fltv-93mn4kp4eaxu44sfaq40shp5u 13.125.178.3:2377
