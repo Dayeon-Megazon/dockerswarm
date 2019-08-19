@@ -62,7 +62,7 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 $ docker-compose -v
 docker-compose version 1.25.0-rc2, build 661ac20e
 ```
-> tip: You must be installed ( master1 & worker1 & worker2 )
+> Tip: Docker and docker-compose must be installed on master1, worker1, worker2.
 
 ## Initialization
 ```
