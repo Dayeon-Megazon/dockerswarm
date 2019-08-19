@@ -77,14 +77,17 @@ $ docker service rm SERVICE [SERVICE...]
 ```
 ```
 $ docker service rm web
+
 web
 ```
 ```
 $ docker service ls
+
 ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
 ```
 ```
 $ docker service ps web
+
 no such service: web
 ```
 ## Uninstall Docker Swarm
