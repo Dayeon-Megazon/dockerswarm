@@ -76,3 +76,20 @@ wx6jrekulqwt        web.1               httpd:latest        ip-172-31-20-162    
 vf7m5p3of4kl        web.2               httpd:latest        ip-172-31-29-251    Running             Running 53 seconds ago
 oix9zy3o8gtd        web.3               httpd:latest        ip-172-31-23-216    Running             Running 53 seconds ago 
 ```
+
+## Shut down the Docker Swarm Service
+```
+$ docker service rm SERVICE [SERVICE...]
+```
+```
+$ docker service rm web
+web
+```
+```
+$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+```
+```
+$ docker service ps web
+no such service: web
+```
