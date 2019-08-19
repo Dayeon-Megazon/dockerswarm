@@ -66,8 +66,9 @@ docker-compose version 1.25.0-rc2, build 661ac20e
 
 ## Initialization
 ```
-$ sudo docker swarm init --advertise-addr [your-manager1-ID]
+$ sudo docker swarm init --advertise-addr [your-Master1-Public-IP]
 ```
+*example*
 ```
 $ sudo docker swarm init --advertise-addr 54.180.188.231
 Swarm initialized: current node (hwmdgy2a2vu3aoa98ehi1hu4u) is now a manager.
@@ -77,4 +78,39 @@ To add a worker to this swarm, run the following command:
     docker swarm join --token SWMTKN-1-3dlz3z61zp569hqespolbigfnn5yb8j6wluo268glfnxmbl9su-4lktxp5fl5gj501jd80mvopnz 54.180.188.231:2377
 
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+```
+
+## Check Swarm Node
+
+```
+$ docker info
+.
+.
+Swarm: active
+ NodeID: hwmdgy2a2vu3aoa98ehi1hu4u
+ Is Manager: true
+ ClusterID: dr9b1o618ntskmlz2f9vaph9d
+ Managers: 1
+ Nodes: 1
+ Orchestration:
+  Task History Retention Limit: 5
+.
+.
+```
+
+## Add a manager to this swarm
+
+```
+$ docker swarm join-token manager
+
+To add a manager to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-3dlz3z61zp569hqespolbigfnn5yb8j6wluo268glfnxmbl9su-2911jcg7de7wact27h2cqkbxx 54.180.188.231:2377
+```
+
+## Join with another node
+
+Join another node with the token above.
+```
+
 ```
