@@ -50,10 +50,47 @@
   Running pre-create checks...
   Error with pre-create check: "VBoxManage not found. Make sure VirtualBox is installed and VBoxManage is in the path" 
   ```
+  
+  *OR*
+  
   ```
-  $ sdocker-machine create node1
+  $ docker-machine create node1
   
   Running pre-create checks...
   Error with pre-create check: "This computer doesn't have VT-X/AMD-v enabled. Enabling it in the BIOS is mandatory"
   ```
+  ## Make 'AWS-SANDBOX'
+  
+  ```
+  $ create --driver amazonec2 --amazonec2-access-key [your-access-key] --amazonec2-secret-key [your-secret-key] aws-sandbox
+  ```
+  
+  *example*
+  ```
+  $ docker-machine create --driver amazonec2 --amazonec2-access-key AKI###### --amazonec2-secret-key mY6###### aws-sandbox
 
+  Running pre-create checks...
+  Creating machine...
+  (aws-sandbox) Launching instance...
+  .
+  .
+  Docker is up and running!
+  To see how to connect your Docker Client to the Docker Engine running on this virtual machine, run: docker-machine env aws-sandbox
+  ```
+  ## Docker host
+  ```
+  $ docker-machine create --driver none --url=tcp://172.31.20.162:2376 custombox
+  
+  Running pre-create checks...
+  Creating machine...
+  To see how to connect your Docker Client to the Docker Engine running on this virtual machine, run: docker-machine env custombox
+  ```
+  
+  ## Check
+  ```
+  $ docker-machine ls
+
+  NAME          ACTIVE   DRIVER      STATE     URL                         SWARM   DOCKER     ERRORS
+  aws-sandbox   -        amazonec2   Running   tcp://54.166.208.230:2376           v19.03.1   
+  custombox     -        none        Running   tcp://172.31.20.162:2376            Unknown    Unable to query docker version: Cannot ... 
+  ```
