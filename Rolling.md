@@ -205,14 +205,14 @@ q6f7b4bghbmwjmdud2p4bly7v *   ip-172-31-20-162    Ready               Active    
 k9iihxr5m2o126lsuqyh99iuu     ip-172-31-29-251    Ready               Active                                  18.06.1-ce
 ```
 
-> but 유지보수모드에 있던 Node를 다시 사용할 수 있도록 설정하다고 해서, 기존에 넘어갔던 Task가 돌아오지는 않는다.
+> However, re-enabling the node that was in maintenance mode does not return the task that had been transferred.
 
 ```
 $ docker service ps ping
-ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE            ERROR               PORTS
-16exmyzur6a3        ping.1              alpine:latest       ip-172-31-20-162    Running             Running 10 minutes ago                       
-yqq9o17ri9e2        ping.2              alpine:latest       ip-172-31-29-251    Running             Running 10 minutes ago                       
-wy7ysb6bfg8i        ping.3              alpine:latest       ip-172-31-29-251    Running             Running 10 minutes ago                       
-ulmh720d5z79        ping.4              alpine:latest       ip-172-31-20-162    Running             Running 5 minutes ago                        
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE            ERROR       
+16exmyzur6a3        ping.1              alpine:latest       ip-172-31-20-162    Running             Running 10 minutes ago
+yqq9o17ri9e2        ping.2              alpine:latest       ip-172-31-29-251    Running             Running 10 minutes ago
+wy7ysb6bfg8i        ping.3              alpine:latest       ip-172-31-29-251    Running             Running 10 minutes ago
+ulmh720d5z79        ping.4              alpine:latest       ip-172-31-20-162    Running             Running 5 minutes ago
 5e2lm6xfmnpv         \_ ping.4          alpine:latest       ip-172-31-23-216    Shutdown            Shutdown 5 minutes ago             
 ```
