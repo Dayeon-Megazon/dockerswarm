@@ -53,3 +53,17 @@ pylmiug1xwvc766inm2gqbvb7 *   ip-172-31-8-136.ap-northeast-2.compute.internal   
 99dfo327d5hhtzl4ruf6aqhkk     ip-172-31-11-255.ap-northeast-2.compute.internal   Ready               Active              Reachable       
 actdvferfk0xjukksn2rlaqvi     ip-172-31-13-188.ap-northeast-2.compute.internal   Down                Active                             
 ```
+
+## Visualizer
+```
+$ docker service create \
+-p 8080:8080 \
+--constraint=node.role==manager \
+--mount=type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
+dockersamples/visualizer
+```
+*AND*
+
+Go to http://[your-manager-public-ip]:8080
+
+
