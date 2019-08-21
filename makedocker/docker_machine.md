@@ -96,7 +96,7 @@
   ```
 ---
 
-## 아예 환경변수를 추가하는 방법
+## 환경변수 추가하는 방법
   
   [AWS CLI 구성](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration)
   
