@@ -70,5 +70,5 @@ Then, you can see your docker-swarm
 *example*
 
 <div>
-<img width="800" src="https://user-images.githubusercontent.com/54167990/63415485-c727d580-c438-11e9-8778-2ce6fa11bfaa.PNG"> 
+<img width="800" src="https://user-images.githubusercontent.com/54167990/63415940-795f9d00-c439-11e9-8771-84aad5bd0ec5.PNG" 
 </div>
