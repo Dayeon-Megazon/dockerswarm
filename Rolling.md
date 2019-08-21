@@ -234,6 +234,7 @@ tjfmjv9tydo02s0c0686s5k90     ip-172-31-23-216    Ready               Active    
 pyox9u0wyn7ry5cb97keokxft     ip-172-31-29-251    Ready               Active                                  18.06.1-ce
 
 $ docker service ps registry
+
 ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE            ERROR       
 qn3oxnqicqrk        registry.1          registry:latest     ip-172-31-20-162    Running             Running 3 minutes ago
 01e4haem0t37        registry.2          registry:latest     ip-172-31-29-251    Running             Running 14 seconds ago
@@ -259,3 +260,24 @@ o4h0dbj58q3x        registry.2          registry:latest     ip-172-31-20-162    
 t4rkymybht7z        registry.3          registry:latest     ip-172-31-23-216    Running             Running 2 minutes ago    
 ```
 > worker2(ip-172-31-29-251)이 Shutdown 상태가 되면서 다른 node인 master1(ip-172-31-20-162)가 복구한 것을 볼 수 있다.
+
+- 다시 worker2를 활성화
+```
+$ docker node ls
+
+ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
+jfj6w4sjkyfa57fhi3juw8dr7 *   ip-172-31-20-162    Ready               Active              Leader              18.06.1-ce
+tjfmjv9tydo02s0c0686s5k90     ip-172-31-23-216    Ready               Active                                  18.06.1-ce
+pyox9u0wyn7ry5cb97keokxft     ip-172-31-29-251    Ready               Active                                  18.06.1-ce
+```
+- worker2를 활성화해도 전에 하던 작업을 다시 할 수 없음
+```
+$ docker service ps registry
+
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE                 ERROR 
+qn3oxnqicqrk        registry.1          registry:latest     ip-172-31-20-162    Running             Running 19 minutes ago
+o4h0dbj58q3x        registry.2          registry:latest     ip-172-31-20-162    Running             Running 14 minutes ago
+01e4haem0t37         \_ registry.2      registry:latest     ip-172-31-29-251    Shutdown            Shutdown about a minute ago
+t4rkymybht7z        registry.3          registry:latest     ip-172-31-23-216    Running             Running 16 minutes ago       
+```
+> 원래 하던 작업이 master1에게 넘어갔으므로, 장애 복구가 되었어도 standby(ready) 상태로 대기한다.
