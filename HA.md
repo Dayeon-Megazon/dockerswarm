@@ -100,7 +100,3 @@ ID                  NAME                IMAGE               NODE                
 zfsy5r0ghvoo        ping.1              alpine:latest       ip-172-31-20-162    Running             Running 45 seconds ago              
 sc47jfrfcxkr        ping.2              alpine:latest       ip-172-31-23-216    Running             Running 45 seconds ago            
 ```
-## kill leader
-
-```
-```
