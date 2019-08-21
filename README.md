@@ -12,15 +12,17 @@
   
   > But I used most of them as AWS. So, I recommend doing with AWS.
 
+---
+
 ## [2 step] makedocker/docker_machine.md
 
 - How to install docker-machine on AWS
 
-----
+---
 
 ## [3 step] exec/start_service.md
 
 - This step is 'Basic Usage of Docker Swarm'
 - Make Docker-Swarm service.
 
-## [4 step] 
+---
