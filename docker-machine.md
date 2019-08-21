@@ -95,7 +95,8 @@
   custombox     -        none        Running   tcp://172.31.20.162:2376            Unknown    Unable to query docker version: Cannot ... 
   ```
 ---
-  + 이 외에 아예 환경변수를 추가하는 방법이 있다.
+
+## 아예 환경변수를 추가하는 방법
   
   [AWS CLI 구성](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration)
   
