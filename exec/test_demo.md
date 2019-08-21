@@ -62,9 +62,9 @@ $ docker service create \
 --mount=type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
 dockersamples/visualizer
 ```
-*AND*
 
 Go to http://[your-manager-public-ip]:8080
+
 Then, you can see your docker-swarm
 
 *example*
