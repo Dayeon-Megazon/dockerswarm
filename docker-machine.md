@@ -94,3 +94,32 @@
   aws-sandbox   -        amazonec2   Running   tcp://54.166.208.230:2376           v19.03.1   
   custombox     -        none        Running   tcp://172.31.20.162:2376            Unknown    Unable to query docker version: Cannot ... 
   ```
+---
+  + 이 외에 아예 환경변수를 추가하는 방법이 있다.
+  
+  [AWS CLI 구성](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration)
+  
+  ```
+  $ aws configure
+  
+  AWS Access Key ID [None]: AKI#####...
+  AWS Secret Access Key [None]: wJa####....
+  Default region name [None]: ap-northeast-2
+  Default output format [None]: json
+  ```
+  > 이 방법을 사용하는 경우엔 바로 create가 가능하다.
+  
+  *example*
+  ```
+  $ docker-machine create --driver amazonec2 aws01
+  ```
+  ```
+  $ docker-machine env aws01
+  
+  export DOCKER_TLS_VERIFY="1"
+  export DOCKER_HOST="tcp://34.227.52.179:2376"
+  export DOCKER_CERT_PATH="/home/ec2-user/.docker/machine/machines/aws01"
+  export DOCKER_MACHINE_NAME="aws01"
+  # Run this command to configure your shell: 
+  # eval $(docker-machine env aws01)
+  ```
