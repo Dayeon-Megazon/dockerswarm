@@ -4,11 +4,23 @@
 
 ---
 
-## 'AWS-docker.md' | 'GCP-docker.md'
+
+## [1 step] makedocker/docker_AWS.md | makedocker/docker_GCE.md
 
 - If you have an AWS account, perform AWS-docker.md 
 - If you have a GCP account, perform GCP-docker.md
+  
+  > But I used most of them as AWS. So, I recommend doing with AWS.
 
-## Service.md
+## [2 step] makedocker/docker_machine.md
 
+- How to install docker-machine on AWS
+
+----
+
+## [3 step] exec/start_service.md
+
+- This step is 'Basic Usage of Docker Swarm'
 - Make Docker-Swarm service.
+
+## [4 step] 
