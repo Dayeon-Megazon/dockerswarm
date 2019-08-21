@@ -66,4 +66,4 @@ dockersamples/visualizer
 
 Go to http://[your-manager-public-ip]:8080
 
-
+![demo](https://user-images.githubusercontent.com/54167990/63415485-c727d580-c438-11e9-8778-2ce6fa11bfaa.PNG)
