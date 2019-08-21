@@ -59,7 +59,7 @@
   Running pre-create checks...
   Error with pre-create check: "This computer doesn't have VT-X/AMD-v enabled. Enabling it in the BIOS is mandatory"
   ```
-  ## Make 'AWS-SANDBOX'
+  ## Make 'AWS-SANDBOX' (명령 줄 플래그를 사용하는 방법)
   
   ```
   $ create --driver amazonec2 --amazonec2-access-key [your-access-key] --amazonec2-secret-key [your-secret-key] aws-sandbox
@@ -77,7 +77,7 @@
   Docker is up and running!
   To see how to connect your Docker Client to the Docker Engine running on this virtual machine, run: docker-machine env aws-sandbox
   ```
-  ## Docker host
+  ## Docker host (Driver 없이 create 하는 방법)
   ```
   $ docker-machine create --driver none --url=tcp://172.31.20.162:2376 custombox
   
