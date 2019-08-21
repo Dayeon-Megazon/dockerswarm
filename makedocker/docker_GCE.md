@@ -97,7 +97,7 @@ Swarm: active
  Manager Addresses:
   35.224.82.148:2377
 ```
-## join
+## Join
 
 ```
 $ sudo docker swarm join-token worker
