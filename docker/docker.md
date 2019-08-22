@@ -5,7 +5,8 @@
 - 시작 : 2013년 3월 산타클라라에서 열린 `Pycon Conference`에서 dotCloud 창업자인 `Solomon Hykes`가   
   `The future of Linux Containers`라는 세션을 발표하며 처음 알려지게 되었다.
 
-- 동향: 2016년 설문조사에 따르면, 90%가 docker를 개발에 사용 중 / 80%가 DevOps에 사용할 예정 / 58%가 운영환경에서 사용 중이라 한다.
+- 동향 : 2016년 설문조사에 따르면, 
+  90%가 docker를 개발에 사용 중 / 80%가 DevOps에 사용할 예정 / 58%가 운영환경에서 사용 중이라 한다.
 
 ## Docker란?
 
