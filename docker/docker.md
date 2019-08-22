@@ -48,13 +48,15 @@
   새로운 서버가 추가되면 미리 만든 이미지를 다운받고 컨테이너를 생성하면 되며,
   한 서버에 여러개의 컨테이너를 실행할 수 있다.
   
-  - 이미지 저장 방식 '레이어 저장 방식'  
+  - 이미지 저장 방식 : `레이어 저장 방식`  
   
-  Ubuntu | nginx | Web app | R/W layer 
-  ----| ---- | ----| ----
-  | | | | `web app image layers`
-  | | | `web app source` | web app source
-  | | `nginx` | nginx | nginx
-  Layer C | Layer C | Layer C | Layer C
-  Layer B | Layer B | Layer B | Layer B
-  Layer A | Layer A | Layer A | Layer A
+  
+  Ubuntu | nginx | Web app                     
+  ----| ---- | ----
+  | | | | `R/W layer`
+  | | | `web app source` 
+  | | `nginx` | nginx 
+  Layer C | Layer C | Layer C 
+  Layer B | Layer B | Layer B 
+  Layer A | Layer A | Layer A 
+
