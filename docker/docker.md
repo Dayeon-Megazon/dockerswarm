@@ -52,9 +52,9 @@
   
   Ubuntu | nginx | Web app | R/W layer 
   ----| ---- | ----| ----
-   | | | web app image layers
-   | | web app source | web app source
-   | ngix | nginx | nginx
+  | | | | web app image layers
+  | | | web app source | web app source
+  | | nginx | nginx | nginx
   Layer C | Layer C | Layer C | Layer C
   Layer B | Layer B | Layer B | Layer B
   Layer A | Layer A | Layer A | Layer A
