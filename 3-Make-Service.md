@@ -47,3 +47,39 @@ ubuntu@aws-node1:~$ sudo docker service ps web
 ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE           ERROR       
 pfxfmfhouu7h        web.1               httpd:latest        aws-node1           Running             Running 3 minutes ago               
 ```
+
+## 2. 서비스 복제하기
+
+만든 서비스를 복제해봅시다.  
+복제하는데는 여러 방법이 있습니다.  
+
+- = 기호를 사용하여 복제하기
+`사용법`
+```
+$ sudo docker service scale [service-name]=[replica-number]
+```
+```
+ubuntu@aws-node1:~$ sudo docker service scale web=3
+
+web scaled to 3
+overall progress: 3 out of 3 tasks 
+1/3: running   [==================================================>] 
+2/3: running   [==================================================>] 
+3/3: running   [==================================================>] 
+verify: Service converged 
+```
+복제되었는지 확인해보기
+```
+ubuntu@aws-node1:~$ sudo docker service ls
+
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+i7pbste6l5f0        web                 replicated          3/3                 httpd:latest        
+```
+```
+ubuntu@aws-node1:~$ sudo docker service ps web
+
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE            ERROR       
+pfxfmfhouu7h        web.1               httpd:latest        aws-node1           Running             Running 17 minutes ago
+ankki0tclob3        web.2               httpd:latest        aws-node3           Running             Running 28 seconds ago
+mkdc14bvys8l        web.3               httpd:latest        aws-node2           Running             Running 28 seconds ago               
+```
