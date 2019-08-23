@@ -1,71 +1,142 @@
-## Initialization
-```
-$ sudo docker swarm init --advertise-addr [your-master1-ip]
-```
-*example*
-```
-master1:~$ sudo docker swarm init --advertise-addr 54.180.188.231
-Swarm initialized: current node (hwmdgy2a2vu3aoa98ehi1hu4u) is now a manager.
+# 2# AWS에서 EC2 인스턴스로 Docker-Swarm 만들기
 
+안녕하세요.
+
+챕터 #1에서 배운 Docker-machine으로 EC2 인스턴스 노드까지 생성이 잘 되었나요?
+
+이번 챕터는 그 노드로 Docker-Swarm을 만들어보도록 합시다. 
+
+---
+
+### 목차는 다음과 같습니다.
+
+[1. Swarm initialized 하기](#1. Swarm initialized 하기)  
+[2. SSH를 통해 EC2 인스턴스에 접속하기](#2-ssh를-통해-ec2-인스턴스에-접속하기)   
+  
+
+## 0. 생성한 모든 Node에 docker 다운받기
+
+챕터 1에서 만든 노드 3개에 docker를 설치해야합니다.
+
+Docker, Docker-compose, Docker-machine을 모두 설치합니다.
+
+[챕터 1 다시 보기](https://github.com/It-dayeon/dockerswarm/blob/master/1-Make-Docker.md)
+
+> 챕터 1의 3. 4. 5. 을 참고하세요.
+
+---
+## 1. Node에 Manager 직급 주기
+
+저번 챕터에서 만들었던 노드들 기억 나시나요?   
+명령어를 사용해서 다시 한 번 확인하겠습니다.
+
+```
+[ec2-user@ip-172-31-18-132 ~]$ docker-machine ls
+
+NAME        ACTIVE   DRIVER      STATE     URL                         SWARM   DOCKER     ERRORS
+aws-node1   -        amazonec2   Running   tcp://3.81.226.168:2376             v19.03.1   
+aws-node2   -        amazonec2   Running   tcp://54.242.54.187:2376            v19.03.1   
+aws-node3   -        amazonec2   Running   tcp://54.174.125.199:2376           v19.03.1   
+```
+
+이 중에서 하나를 골라서 `manager`라는 직급을 주도록 하겠습니다.    
+저는 **aws-node1**을 `manager`로 나머지 두 노드는 `worker`로 설정하도록 하겠습니다.    
+
+그렇다면, `manager`로 사용할 **aws-node1**에 접속하도록 하겠습니다.    
+
+`사용법`
+```
+$ docker-machine ssh [manager1-node-name]
+```
+
+`예시`
+
+```
+[ec2-user@ip-172-31-18-132 ~]$ docker-machine ssh aws-node1
+
+Welcome to Ubuntu 16.04.4 LTS (GNU/Linux 4.4.0-1052-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+ .
+ .
+ubuntu@aws-node1:~$ 
+```
+**aws-node1**에 접속한 후에 `manager`로 직급을 주겠습니다.   
+
+`사용법`
+
+```
+$ sudo docker swarm init --advertise-addr [your-manager1-ip]
+```
+`예시`
+
+```
+ubuntu@aws-node1:~$ sudo docker swarm init --advertise-addr 3.81.226.168
+
+Swarm initialized: current node (95cac3o116goht3tjdw9finqy) is now a manager.
 To add a worker to this swarm, run the following command:
 
-    docker swarm join --token SWMTKN-1-3dlz3z61zp569hqespolbigfnn5yb8j6wluo268glfnxmbl9su-4lktxp5fl5gj501jd80mvopnz 54.180.188.231:2377
+    docker swarm join --token SWMTKN-1-0w0oezqj2s59bj7635pj0mxiawgnmmr84ny15gl688yx98aypb-36jb6pj963h40dn0uolox5o46 3.81.226.168:2376
 
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
- > Tip : only master1 must do this step. 
- 
-## Check Swarm Node
+현재 노드가 manager가 되었다는 문장인 `current node (95cac3o116goht3tjdw9finqy) is now a manager.`가 나왔습니다.         
+
+다른 두 개의 노드를 worker로 설정하기 위해서는 위의 command인      
+`docker swarm join --token SWMTKN-1-0w0oezqj2s59bj7635pj0mxiawgnmmr84ny15gl688yx98aypb-36jb6pj963h40dn0uolox5o46 3.81.226.168:2376` 을 다른 노드에 접속해서 command 하면 됩니다.     
+
+> 만약, 다른 노드에 manager 직급을 주고 싶다면, `$ docker swarm join-token manager` 를 사용하여 나온 값을 다른 노드에 접속하여 command하면 됩니다.   
+
+
+## 2. 나머지 노드에 Woker 직급 주기
+
+이제 남은 두개에 노드에 접속하여 보겠습니다.     
+접속 전에 AWS 사이트에서 EC2 인스턴스들의 보안그룹을 확인해봅니다.   
+
+위에서 만든 인스턴스인 aws-node1, aws-node2, aws-node3의 보안그룹인 `docker-machine`이 생성되었습니다.     
+인바운드를 확인하여 아래 표와 같이 **2377 포트**가 열려있는지 확인해야 합니다.     
+
+| 유형 | 프로토콜 | 포트 범위 | 소스 |
+| :---: | :---: | :---: | :---: |
+| 사용자 지정 TCP 규칙 | TCP | 2377 | 0.0.0.0/0 |
+
+2377 포트가 열린 걸 확인한 후, ssh로 접속해보도록 하겠습니다.    
+
+> Tip: 3개의 노드를 사용하므로 창을 3개를 띄워서 하면 편합니다.    
+
+`aws-node2에 접속해 worker 직급주기`   
 
 ```
-$ docker info
+[ec2-user@ip-172-31-18-132 ~]$ docker-machine ssh aws-node2
 .
 .
-Swarm: active
- NodeID: hwmdgy2a2vu3aoa98ehi1hu4u
- Is Manager: true
- ClusterID: dr9b1o618ntskmlz2f9vaph9d
- Managers: 1
- Nodes: 1
- Orchestration:
-  Task History Retention Limit: 5
-.
-.
-```
+ubuntu@aws-node2:~$ sudo docker swarm join \
+--token SWMTKN-1-581wwvbpfqapm8l1ryun99b4ne53ehdds0s1uyjnckm90b5x8e\
+-1db5i7qqeb19w3ghoxjrs22g4 3.81.226.168:2377
 
-## Add a worker to this swarm
-
-```
-$ docker swarm join-token worker
-
-To add a worker to this swarm, run the following command:
-
-    docker swarm join --token SWMTKN-1-1e3rc51slo80smjkgukakdfuq7voxohs037y2cm54jnny9fltv-93mn4kp4eaxu44sfaq40shp5u 13.125.178.3:2377
-```
-
-## Join with another worker node
-
-Join another node with the token above.
-> tip : 2377 port must be open.
-
-```
-$ docker swarm join -- token [your-token-value] [your-manager1-ip]:[port-number 2377]
-```
-```
-worker1:~$ docker swarm join --token SWMTKN-1-1e3rc51slo80smjkgukakdfuq7voxohs037y2cm54jnny9fltv-93mn4kp4eaxu44sfaq40shp5u 13.125.178.3:2377
-This node joined a swarm as a worker.
-
-worker2:~$ docker swarm join --token SWMTKN-1-1e3rc51slo80smjkgukakdfuq7voxohs037y2cm54jnny9fltv-93mn4kp4eaxu44sfaq40shp5u 13.125.178.3:2377
 This node joined a swarm as a worker.
 ```
+`aws-node3에 접속해 worker 직급주기`    
+```
+[ec2-user@ip-172-31-18-132 ~]$ docker-machine ssh aws-node3
+.
+.
+ubuntu@aws-node3:~$ sudo docker swarm join \
+--token SWMTKN-1-581wwvbpfqapm8l1ryun99b4ne53ehdds0s1uyjnckm90b5x8e\
+-1db5i7qqeb19w3ghoxjrs22g4 3.81.226.168:2377
 
-## Check docker node
+This node joined a swarm as a worker.
+```
+
+노드들이 잘 연결되었는지 확인해봅시다.
+manager 노드인 aws-node1에 접속하여 확인할 수 있습니다.
 
 ```
-master1:~$ docker node ls
-
+ubuntu@aws-node1:~$ sudo docker node ls
 ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
-q6f7b4bghbmwjmdud2p4bly7v *   ip-172-31-20-162    Ready               Active              Leader              18.06.1-ce
-3w208wado67n2ftoyoddddn97     ip-172-31-23-216    Ready               Active                                  18.06.1-ce
-k9iihxr5m2o126lsuqyh99iuu     ip-172-31-29-251    Ready               Active                                  18.06.1-ce
+v0lbxme157q3e40kdmqz7ie0i *   aws-node1           Ready               Active              Leader              19.03.1
+vxw2adfad395bunokybhkltln     aws-node2           Ready               Active                                  19.03.1
+put1qu5xsd5ppol0uu5qkw26z     aws-node3           Ready               Active                                  19.03.1
 ```
