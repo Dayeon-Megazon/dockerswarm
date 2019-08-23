@@ -1,4 +1,4 @@
-# AWS에서 EC2 인스턴스로 Docker-Swarm 만들기
+# 1# AWS에서 EC2 인스턴스로 Docker-Swarm 만들기
 
 안녕하세요.
 
@@ -209,11 +209,20 @@ aws-node1   -        amazonec2   Running   tcp://3.81.226.168:2376             v
 aws-node2   -        amazonec2   Running   tcp://54.242.54.187:2376            v19.03.1   
 aws-node3   -        amazonec2   Running   tcp://54.174.125.199:2376           v19.03.1   
 ```
-다음과 같이 3개의 노드가 잘 설치된 것을 확인해 볼 수 있다.
+다음과 같이 3개의 노드가 잘 설치된 것을 확인해 볼 수 있습니다.
 
 ---
 
 도커를 설치하고 노드를 생성하는 기본 단계를 모두 완료하셨습니다!  
 다음 단계에서는 방금 생성한 노드를 연결하는 **Docker-Swarm**을 만드는 방법에 대해서 배워보겠습니다.
 
-> 다음 단계로 넘어가기 : [도커 스웜 만들기](https://github.com/It-dayeon/dockerswarm/blob/master/2-Make-Swarm.md)
+> `배운 내용 복습 하기`    
+[1. EC2 인스턴스 만들기](#1-ec2-인스턴스-만들기)  
+[2. SSH를 통해 EC2 인스턴스에 접속하기](#2-ssh를-통해-ec2-인스턴스에-접속하기)   
+[3. 접속한 인스턴스 안에 Docker를 설치하기](#3-접속한-인스턴스-안에-docker를-설치하기)  
+[4. Docker-compose 설치하기](#4-docker-compose-설치하기)  
+[5. Docker-machine 설치하기](#5-docker-machine-설치하기)  
+[6. Docker-machine으로 AWS 드라이버 사용하기](#6-docker-machine으로-aws-드라이버-사용하기)  
+[7. Docker-machine으로 EC2 인스턴스 노드 생성하기](#7-docker-machine으로-ec2-인스턴스-노드-생성하기) 
+
+> `다음 단계로 넘어가기` : [도커 스웜 만들기](https://github.com/It-dayeon/dockerswarm/blob/master/2-Make-Swarm.md)
