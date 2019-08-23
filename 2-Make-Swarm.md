@@ -48,7 +48,7 @@ aws-node3   -        amazonec2   Running   tcp://54.174.125.199:2376           v
 
 `사용법`
 ```
-$ docker-machine ssh [manager1-node-name]
+$ docker-machine ssh [manager-node-name]
 ```
 
 `예시`
@@ -70,7 +70,7 @@ ubuntu@aws-node1:~$
 `사용법`
 
 ```
-$ sudo docker swarm init --advertise-addr [your-manager1-ip]
+$ sudo docker swarm init --advertise-addr [your-manager-ip]
 ```
 `예시`
 
@@ -80,11 +80,12 @@ ubuntu@aws-node1:~$ sudo docker swarm init --advertise-addr 3.81.226.168
 Swarm initialized: current node (95cac3o116goht3tjdw9finqy) is now a manager.
 To add a worker to this swarm, run the following command:
 
-    docker swarm join --token SWMTKN-1-0w0oezqj2s59bj7635pj0mxiawgnmmr84ny15gl688yx98aypb-36jb6pj963h40dn0uolox5o46 3.81.226.168:2376
+   ` docker swarm join --token SWMTKN-1-0w0oezqj2s59bj7635pj0mxiawgnmmr84ny15gl688yx98aypb-36jb6pj963h40dn0uolox5o46 3.81.226.168:2376`
 
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
-현재 노드가 manager가 되었다는 문장인 `current node (95cac3o116goht3tjdw9finqy) is now a manager.`가 나왔습니다.         
+현재 노드가 manager가 되었다는 문장인    
+`current node (95cac3o116goht3tjdw9finqy) is now a manager.`가 나왔습니다.           
 
 다른 두 개의 노드를 worker로 설정하기 위해서는 위의 command인      
 `docker swarm join --token \
