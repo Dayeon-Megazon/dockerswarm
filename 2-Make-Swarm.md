@@ -10,8 +10,8 @@
 
 ### 목차는 다음과 같습니다.
 
-[1. Node에 Manager 직급 주기](#1-node에-manager-직급-주기)  
-[2. 나머지 노드에 Woker 직급 주기](#2-나머지-노드에-woker-직급-주기)   
+[1. Node중 하나를 Manager로 만들기](#1-node중-하나를-manager로-만들기)  
+[2. 나머지 Node들을 Woker로 만들기](#2-나머지-node들을-woker로-만들기)   
   
 
 ## 0. 생성한 모든 Node에 docker 다운받기
@@ -25,7 +25,7 @@ Docker, Docker-compose, Docker-machine을 모두 설치합니다.
 > 챕터 1의 3. 4. 5. 을 참고하세요.
 
 ---
-## 1. Node에 Manager 직급 주기
+## 1. Node중 하나를 Manager로 만들기
 
 저번 챕터에서 만들었던 노드들 기억 나시나요?   
 명령어를 사용해서 다시 한 번 확인하겠습니다.
@@ -90,7 +90,7 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 > 만약, 다른 노드에 manager 직급을 주고 싶다면, `$ docker swarm join-token manager` 를 사용하여 나온 값을 다른 노드에 접속하여 command하면 됩니다.   
 
 
-## 2. 나머지 노드에 Woker 직급 주기
+## 2. 나머지 Node들을 Woker로 만들기
 
 이제 남은 두개에 노드에 접속하여 보겠습니다.     
 접속 전에 AWS 사이트에서 EC2 인스턴스들의 보안그룹을 확인해봅니다.   
@@ -140,6 +140,15 @@ v0lbxme157q3e40kdmqz7ie0i *   aws-node1           Ready               Active    
 vxw2adfad395bunokybhkltln     aws-node2           Ready               Active                                  19.03.1
 put1qu5xsd5ppol0uu5qkw26z     aws-node3           Ready               Active                                  19.03.1
 ```
+
+다음과 같이 3개의 노드가 잘 연결되어 Docker-Swarm을 형성한 것을 볼 수 있습니다.
+
 ---
-[1. Node에 Manager 직급 주기](#1-node에-manager-직급-주기)  
-[2. 나머지 노드에 Woker 직급 주기](#2-나머지-노드에-woker-직급-주기)   
+도커스웜을 만드는 기본 단계를 모두 완료하셨습니다!
+다음 단계에서는 오늘 만든 Docker-Swarm을 가지고 **서비스**를 생성하는 방법에 대해 배워보겠습니다.
+
+> 배운 내용 복습 하기   
+[1. Node중 하나를 Manager로 만들기](#1-node중-하나를-manager로-만들기)  
+[2. 나머지 Node들을 Woker로 만들기](#2-나머지-node들을-woker로-만들기)    
+
+> 다음 단계로 넘어가기 : 
