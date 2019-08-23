@@ -15,10 +15,10 @@ AWS에서 EC2 인스턴스를 사용해서 Docker-Swarm을 만드는 방법을 �
 [1. EC2 인스턴스 만들기](#1-ec2-인스턴스-만들기)  
 [2. SSH를 통해 EC2 인스턴스에 접속하기](#2-ssh를-통해-ec2-인스턴스에-접속하기)   
 [3. 접속한 인스턴스 안에 Docker를 설치하기](#3-접속한-인스턴스-안에-docker를-설치하기)  
-[4. Docker-compose 설치하기](#4-docker-compose-설치하기)
-[5. Docker-machine 설치하기](#5-docker-machine-설치하기)
-[6. Docker-machine으로 AWS 드라이버 사용하기](#6-docker-machine으로-aws-드라이버-사용하기)
-[7. Docker-machine으로 EC2 인스턴스 노드 생성하기](#7-docker-machine으로-ec2-인스턴스-노드-생성하기)
+[4. Docker-compose 설치하기](#4-docker-compose-설치하기)  
+[5. Docker-machine 설치하기](#5-docker-machine-설치하기)  
+[6. Docker-machine으로 AWS 드라이버 사용하기](#6-docker-machine으로-aws-드라이버-사용하기)  
+[7. Docker-machine으로 EC2 인스턴스 노드 생성하기](#7-docker-machine으로-ec2-인스턴스-노드-생성하기)  
 
 ---
 ## 1. EC2 인스턴스 만들기
