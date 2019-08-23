@@ -51,7 +51,7 @@ pfxfmfhouu7h        web.1               httpd:latest        aws-node1           
 
 `사용법`
 ```
-$ sudo docker service scale [service-name]=[replica-number]
+$ sudo docker service scale [service-name]=[replicas-number]
 ```
 `예시`
 ```
@@ -81,4 +81,31 @@ ankki0tclob3        web.2               httpd:latest        aws-node3           
 mkdc14bvys8l        web.3               httpd:latest        aws-node2           Running             Running 28 seconds ago               
 ```
 
-## 3. 서비스 Update 하기
+## 3. 서비스 지우기
+
+위에서 만든 `web` 이라는 서비스를 지워보도록 하겠습니다.
+
+`사용법`
+```
+$ docker service rm SERVICE [SERVICE...]
+```
+`예시`
+```
+ubuntu@aws-node1:~$ sudo docker service rm web
+web
+```
+`service 목록 확인`
+```
+$ sudo docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+```
+`web이라는 서비스의 상태 확인`
+```
+$ sudo docker service ps web
+
+no such service: web
+```
+
+`web` 이라는 서비스를 찾을 수 없다고 나오는 것을 보아, 잘 지워진 것을 확인할 수 있습니다.
+
+## 4. 서비스 Update 하기
