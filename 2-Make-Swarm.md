@@ -13,21 +13,23 @@
 [1. Node중 하나를 Manager로 만들기](#1-node중-하나를-manager로-만들기)  
 [2. 나머지 Node들을 Woker로 만들기](#2-나머지-node들을-woker로-만들기)   
   
+---
 
 ## 0. 생성한 모든 Node에 docker 다운받기
 
 챕터 1에서 만든 노드 3개에 docker를 설치해야합니다.
 
-Docker, Docker-compose, Docker-machine을 모두 설치합니다.
+Docker, Docker-compose, Docker-machine을 모두 설치하도록 합시다.
 
 [챕터 1 다시 보기](https://github.com/It-dayeon/dockerswarm/blob/master/1-Make-Docker.md)
 
-> 챕터 1의 3. 4. 5. 을 참고하세요.
+> 챕터 1의 3. 4. 5. 번을 참고하세요.
 
 ---
 ## 1. Node중 하나를 Manager로 만들기
 
 저번 챕터에서 만들었던 노드들 기억 나시나요?   
+
 명령어를 사용해서 다시 한 번 확인하겠습니다.
 
 ```
@@ -63,7 +65,7 @@ Welcome to Ubuntu 16.04.4 LTS (GNU/Linux 4.4.0-1052-aws x86_64)
  .
 ubuntu@aws-node1:~$ 
 ```
-**aws-node1**에 접속한 후에 `manager`로 직급을 주겠습니다.   
+**aws-node1**에 접속한 후에 이 노드를 `manager`로 만들겠습니다.   
 
 `사용법`
 
@@ -85,7 +87,12 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 현재 노드가 manager가 되었다는 문장인 `current node (95cac3o116goht3tjdw9finqy) is now a manager.`가 나왔습니다.         
 
 다른 두 개의 노드를 worker로 설정하기 위해서는 위의 command인      
-`docker swarm join --token SWMTKN-1-0w0oezqj2s59bj7635pj0mxiawgnmmr84ny15gl688yx98aypb-36jb6pj963h40dn0uolox5o46 3.81.226.168:2376` 을 다른 노드에 접속해서 command 하면 됩니다.     
+`docker swarm join --token \
+SWMTKN-1-0w0oezqj2s59bj7635pj0mxiawgnmmr84ny15gl688yx98aypb\
+-36jb6pj963h40dn0uolox5o46 3.81.226.168:2376` 을 저장해놔야 합니다.
+
+다른 노드에 접속하여 이 command를 입력하면 worker로 만들 수 있습니다.   
+그 과정은 아래에서 이어서 설명하겠습니다.
 
 > 만약, 다른 노드에 manager 직급을 주고 싶다면, `$ docker swarm join-token manager` 를 사용하여 나온 값을 다른 노드에 접속하여 command하면 됩니다.   
 
@@ -106,7 +113,7 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 
 > Tip: 3개의 노드를 사용하므로 창을 3개를 띄워서 하면 편합니다.    
 
-`aws-node2에 접속해 worker 직급주기`   
+`aws-node2에 접속해 worker로 만들기`   
 
 ```
 [ec2-user@ip-172-31-18-132 ~]$ docker-machine ssh aws-node2
@@ -118,7 +125,7 @@ ubuntu@aws-node2:~$ sudo docker swarm join \
 
 This node joined a swarm as a worker.
 ```
-`aws-node3에 접속해 worker 직급주기`    
+`aws-node3에 접속해 worker로 만들기`    
 ```
 [ec2-user@ip-172-31-18-132 ~]$ docker-machine ssh aws-node3
 .
@@ -131,7 +138,7 @@ This node joined a swarm as a worker.
 ```
 
 노드들이 잘 연결되었는지 확인해봅시다.
-manager 노드인 aws-node1에 접속하여 확인할 수 있습니다.
+manager 노드인 **aws-node1**에 접속하여 확인할 수 있습니다.
 
 ```
 ubuntu@aws-node1:~$ sudo docker node ls
@@ -141,9 +148,10 @@ vxw2adfad395bunokybhkltln     aws-node2           Ready               Active    
 put1qu5xsd5ppol0uu5qkw26z     aws-node3           Ready               Active                                  19.03.1
 ```
 
-다음과 같이 3개의 노드가 잘 연결되어 Docker-Swarm을 형성한 것을 볼 수 있습니다.
+다음과 같이 3개의 노드가 잘 연결되어 `Docker-Swarm`을 형성한 것을 볼 수 있습니다.
 
 ---
+
 도커스웜을 만드는 기본 단계를 모두 완료하셨습니다!
 다음 단계에서는 오늘 만든 Docker-Swarm을 가지고 **서비스**를 생성하는 방법에 대해 배워보겠습니다.
 
@@ -151,4 +159,4 @@ put1qu5xsd5ppol0uu5qkw26z     aws-node3           Ready               Active    
 [1. Node중 하나를 Manager로 만들기](#1-node중-하나를-manager로-만들기)  
 [2. 나머지 Node들을 Woker로 만들기](#2-나머지-node들을-woker로-만들기)    
 
-> 다음 단계로 넘어가기 : 
+> 다음 단계로 넘어가기 : [서비스 만들기](https://github.com/It-dayeon/dockerswarm/blob/master/3-Make-Service.md)
