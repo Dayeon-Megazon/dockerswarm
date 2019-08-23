@@ -117,76 +117,94 @@ Docker version 18.09.1, build 4c52b90
 docker-compose version 1.25.0-rc2, build 661ac20e
 ```
 
+## 5. Docker-machine 설치하기
 
+사용하는 운영체제에 따라서 설치하는 방법이 다릅니다.
 
-## Initialization
-```
-$ sudo docker swarm init --advertise-addr [your-master1-ip]
-```
-*example*
-```
-master1:~$ sudo docker swarm init --advertise-addr 54.180.188.231
-Swarm initialized: current node (hwmdgy2a2vu3aoa98ehi1hu4u) is now a manager.
-
-To add a worker to this swarm, run the following command:
-
-    docker swarm join --token SWMTKN-1-3dlz3z61zp569hqespolbigfnn5yb8j6wluo268glfnxmbl9su-4lktxp5fl5gj501jd80mvopnz 54.180.188.231:2377
-
-To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
-```
- > Tip : only master1 must do this step. 
- 
-## Check Swarm Node
+- MAC OS를 실행중인 경우
 
 ```
-$ docker info
-.
-.
-Swarm: active
- NodeID: hwmdgy2a2vu3aoa98ehi1hu4u
- Is Manager: true
- ClusterID: dr9b1o618ntskmlz2f9vaph9d
- Managers: 1
- Nodes: 1
- Orchestration:
-  Task History Retention Limit: 5
-.
-.
+$ base=https://github.com/docker/machine/releases/download/v0.16.0 &&
+curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/usr/local/bin/docker-machine &&
+chmod +x /usr/local/bin/docker-machine
 ```
-
-## Add a worker to this swarm
+- Linux를 실행중인 경우
 
 ```
-$ docker swarm join-token worker
-
-To add a worker to this swarm, run the following command:
-
-    docker swarm join --token SWMTKN-1-1e3rc51slo80smjkgukakdfuq7voxohs037y2cm54jnny9fltv-93mn4kp4eaxu44sfaq40shp5u 13.125.178.3:2377
+$ base=https://github.com/docker/machine/releases/download/v0.16.0 &&
+curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
+sudo install /tmp/docker-machine /usr/local/bin/docker-machine
 ```
 
-## Join with another worker node
-
-Join another node with the token above.
-> tip : 2377 port must be open.
+- Git Bash로 Windows를 실행하는 경우
 
 ```
-$ docker swarm join -- token [your-token-value] [your-manager1-ip]:[port-number 2377]
-```
-```
-worker1:~$ docker swarm join --token SWMTKN-1-1e3rc51slo80smjkgukakdfuq7voxohs037y2cm54jnny9fltv-93mn4kp4eaxu44sfaq40shp5u 13.125.178.3:2377
-This node joined a swarm as a worker.
-
-worker2:~$ docker swarm join --token SWMTKN-1-1e3rc51slo80smjkgukakdfuq7voxohs037y2cm54jnny9fltv-93mn4kp4eaxu44sfaq40shp5u 13.125.178.3:2377
-This node joined a swarm as a worker.
+$ base=https://github.com/docker/machine/releases/download/v0.16.0 &&
+mkdir -p "$HOME/bin" &&
+curl -L $base/docker-machine-Windows-x86_64.exe > "$HOME/bin/docker-machine.exe" &&
+chmod +x "$HOME/bin/docker-machine.exe"
 ```
 
-## Check docker node
+컴퓨터의 OS에 맞게 다운을 받은 후에, 다운이 잘 되었는지 확인하여 보겠습니다.
 
 ```
-master1:~$ docker node ls
-
-ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
-q6f7b4bghbmwjmdud2p4bly7v *   ip-172-31-20-162    Ready               Active              Leader              18.06.1-ce
-3w208wado67n2ftoyoddddn97     ip-172-31-23-216    Ready               Active                                  18.06.1-ce
-k9iihxr5m2o126lsuqyh99iuu     ip-172-31-29-251    Ready               Active                                  18.06.1-ce
+[ec2-user@ip-172-31-18-132 ~]$ docker-machine -v
+docker-machine version 0.16.0, build 702c267f
 ```
+
+##  6. Docker-machine으로 AWS 드라이버 사용하기
+
+우선 AWS를 드라이버로 사용하기 위하여, 환경변수를 추가하여보겠습니다.  
+AWS CLI가 AWS와 상호 작용하기 위해 사용하는 설정을 구성해보도록 하겠습니다.
+
+`사용법`
+
+```
+AWS Access Key ID [None]: [your-AWS-Access-Key-ID]
+AWS Secret Access Key [None]: [your-AWS-Secret-Access-Key]
+Default region name [None]: ap-northeast-2 
+Default output format [None]: 
+```
+
+`예시`
+
+```
+[ec2-user@ip-172-31-18-132 ~]$ aws configure
+
+AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
+AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+Default region name [None]: ap-northeast-2
+Default output format [None]: 
+```
+아이디와 키를 입력하였고, 지역은 서울리전을 입력하였습니다.  
+Output format은 지정하지 않고 `엔터키` 를 눌러서 `none` 상태를 유지하였습니다.
+
+##  6. Docker-machine으로 EC2 인스턴스 노드 생성하기
+
+Docker-machine을 사용해서 인스턴스 노드를 생성해보겠습니다.  
+원하는 node의 이름을 정해서 **최소한 노드를 3개** 생성하도록 하겠습니다.
+
+`사용법`
+
+```
+$ docker-machine create --driver amazonec2 [node-name]
+```
+
+`예시`
+
+```
+[ec2-user@ip-172-31-18-132 ~]$ docker-machine create --driver amazonec2 aws-node1
+[ec2-user@ip-172-31-18-132 ~]$ docker-machine create --driver amazonec2 aws-node2
+[ec2-user@ip-172-31-18-132 ~]$ docker-machine create --driver amazonec2 aws-node3
+```
+> Tip: 하나 생성하는데 시간이 조금 소요되기 때문에, 창을 3개를 켜 놓은 후 생성하면 시간이 단축됩니다.  
+
+```
+[ec2-user@ip-172-31-18-132 ~]$ docker-machine ls
+
+NAME        ACTIVE   DRIVER      STATE     URL                         SWARM   DOCKER     ERRORS
+aws-node1   -        amazonec2   Running   tcp://3.81.226.168:2376             v19.03.1   
+aws-node2   -        amazonec2   Running   tcp://54.242.54.187:2376            v19.03.1   
+aws-node3   -        amazonec2   Running   tcp://54.174.125.199:2376           v19.03.1   
+```
+다음과 같이 3개의 노드가 잘 설치된 것을 확인해 볼 수 있다.
