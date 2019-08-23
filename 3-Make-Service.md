@@ -49,11 +49,6 @@ pfxfmfhouu7h        web.1               httpd:latest        aws-node1           
 
 ## 2. 서비스 복제하기
 
-만든 서비스를 복제해봅시다.  
-복제하는데는 여러 방법이 있습니다.  
-
-- = 기호를 사용하여 복제하기  
-
 `사용법`
 ```
 $ sudo docker service scale [service-name]=[replica-number]
@@ -69,13 +64,14 @@ overall progress: 3 out of 3 tasks
 3/3: running   [==================================================>] 
 verify: Service converged 
 ```
-`복제 확인`
+`복제확인`
 ```
 ubuntu@aws-node1:~$ sudo docker service ls
 
 ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
 i7pbste6l5f0        web                 replicated          3/3                 httpd:latest        
 ```
+`상태확인`
 ```
 ubuntu@aws-node1:~$ sudo docker service ps web
 
@@ -84,3 +80,5 @@ pfxfmfhouu7h        web.1               httpd:latest        aws-node1           
 ankki0tclob3        web.2               httpd:latest        aws-node3           Running             Running 28 seconds ago
 mkdc14bvys8l        web.3               httpd:latest        aws-node2           Running             Running 28 seconds ago               
 ```
+
+## 3. 서비스 Update 하기
