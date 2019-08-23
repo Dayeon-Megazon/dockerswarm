@@ -10,8 +10,8 @@
 
 ### 목차는 다음과 같습니다.
 
-[1. Swarm initialized 하기](#1. Swarm initialized 하기)  
-[2. SSH를 통해 EC2 인스턴스에 접속하기](#2-ssh를-통해-ec2-인스턴스에-접속하기)   
+[1. Node에 Manager 직급 주기](#1-node에-manager-직급-주기)  
+[2. 나머지 노드에 Woker 직급 주기](#2-나머지-노드에-woker-직급-주기)   
   
 
 ## 0. 생성한 모든 Node에 docker 다운받기
@@ -140,3 +140,6 @@ v0lbxme157q3e40kdmqz7ie0i *   aws-node1           Ready               Active    
 vxw2adfad395bunokybhkltln     aws-node2           Ready               Active                                  19.03.1
 put1qu5xsd5ppol0uu5qkw26z     aws-node3           Ready               Active                                  19.03.1
 ```
+---
+[1. Node에 Manager 직급 주기](#1-node에-manager-직급-주기)  
+[2. 나머지 노드에 Woker 직급 주기](#2-나머지-노드에-woker-직급-주기)   
