@@ -1,4 +1,4 @@
-# 1# AWS에서 EC2 인스턴스로 Docker-Swarm 만들기
+# 1# AWS에서 EC2 인스턴스에 Docker 설치하기
 
 안녕하세요.
 
@@ -225,4 +225,4 @@ aws-node3   -        amazonec2   Running   tcp://54.174.125.199:2376           v
 [6. Docker-machine으로 AWS 드라이버 사용하기](#6-docker-machine으로-aws-드라이버-사용하기)  
 [7. Docker-machine으로 EC2 인스턴스 노드 생성하기](#7-docker-machine으로-ec2-인스턴스-노드-생성하기) 
 
-> `다음 단계로 넘어가기` : [도커 스웜 만들기](https://github.com/It-dayeon/dockerswarm/blob/master/2-Make-Swarm.md)
+> `다음 단계로 넘어가기` : [Docker-Swarm 만들기](https://github.com/It-dayeon/dockerswarm/blob/master/2-Make-Swarm.md)
