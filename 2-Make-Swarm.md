@@ -80,22 +80,23 @@ ubuntu@aws-node1:~$ sudo docker swarm init --advertise-addr 3.81.226.168
 Swarm initialized: current node (95cac3o116goht3tjdw9finqy) is now a manager.
 To add a worker to this swarm, run the following command:
 
-   ` docker swarm join --token SWMTKN-1-0w0oezqj2s59bj7635pj0mxiawgnmmr84ny15gl688yx98aypb-36jb6pj963h40dn0uolox5o46 3.81.226.168:2376`
+    docker swarm join --token SWMTKN-1-0w0oezqj2s59bj7635pj0mxiawgnmmr84ny15gl688yx98aypb-36jb6pj963h40dn0uolox5o46 3.81.226.168:2376
 
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
 현재 노드가 manager가 되었다는 문장인    
 `current node (95cac3o116goht3tjdw9finqy) is now a manager.`가 나왔습니다.           
 
-다른 두 개의 노드를 worker로 설정하기 위해서는 위의 command인      
-`docker swarm join --token \
-SWMTKN-1-0w0oezqj2s59bj7635pj0mxiawgnmmr84ny15gl688yx98aypb\
--36jb6pj963h40dn0uolox5o46 3.81.226.168:2376` 을 저장해놔야 합니다.
-
+다른 두 개의 노드를 worker로 설정하기 위해서는 위의 command인        
+`docker swarm join --token \    
+SWMTKN-1-0w0oezqj2s59bj7635pj0mxiawgnmmr84ny15gl688yx98aypb\    
+-36jb6pj963h40dn0uolox5o46 3.81.226.168:2376` 을 저장해놔야 합니다.   
+  
 다른 노드에 접속하여 이 command를 입력하면 worker로 만들 수 있습니다.   
 그 과정은 아래에서 이어서 설명하겠습니다.
 
-> 만약, 다른 노드에 manager 직급을 주고 싶다면, `$ docker swarm join-token manager` 를 사용하여 나온 값을 다른 노드에 접속하여 command하면 됩니다.   
+> 만약, 다른 노드에 manager 직급을 주고 싶다면, `$ docker swarm join-token manager` 를 사용하여 나온 값을   
+> 다른 노드에 접속하여 command하면 됩니다.   
 
 
 ## 2. 나머지 Node들을 Woker로 만들기
@@ -153,7 +154,7 @@ put1qu5xsd5ppol0uu5qkw26z     aws-node3           Ready               Active    
 
 ---
 
-도커스웜을 만드는 기본 단계를 모두 완료하셨습니다!
+`Docker-Swarm`을 만드는 기본 단계를 모두 완료하셨습니다!     
 다음 단계에서는 오늘 만든 Docker-Swarm을 가지고 **서비스**를 생성하는 방법에 대해 배워보겠습니다.
 
 > 배운 내용 복습 하기   
