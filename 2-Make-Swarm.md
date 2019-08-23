@@ -88,9 +88,7 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 `current node (95cac3o116goht3tjdw9finqy) is now a manager.`가 나왔습니다.           
 
 다른 두 개의 노드를 worker로 설정하기 위해서는 위의 command인        
-`docker swarm join --token \    
-SWMTKN-1-0w0oezqj2s59bj7635pj0mxiawgnmmr84ny15gl688yx98aypb\    
--36jb6pj963h40dn0uolox5o46 3.81.226.168:2376` 을 저장해놔야 합니다.   
+`docker swarm join --token SWMTKN-1-0w0oezqj2s59bj7635pj0mxiawgnmmr84ny15gl688yx98aypb-36jb6pj963h40dn0uolox5o46 3.81.226.168:2376`을 저장해놔야 합니다.   
   
 다른 노드에 접속하여 이 command를 입력하면 worker로 만들 수 있습니다.   
 그 과정은 아래에서 이어서 설명하겠습니다.
