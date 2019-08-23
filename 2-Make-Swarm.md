@@ -157,9 +157,9 @@ put1qu5xsd5ppol0uu5qkw26z     aws-node3           Ready               Active    
 `Docker-Swarm`을 만드는 기본 단계를 모두 완료하셨습니다!     
 다음 단계에서는 오늘 만든 Docker-Swarm을 가지고 **서비스**를 생성하는 방법에 대해 배워보겠습니다.
 
-> 배운 내용 복습 하기   
+> `배운 내용 복습 하기`   
 [1. Node중 하나를 Manager로 만들기](#1-node중-하나를-manager로-만들기)  
 [2. 나머지 Node들을 Woker로 만들기](#2-나머지-node들을-woker로-만들기)    
 
-> 이전 단계로 돌아가기 : [Docker 설치하기](https://github.com/It-dayeon/dockerswarm/blob/master/1-Make-Docker.md)     
-> 다음 단계로 넘어가기 : [서비스 만들기](https://github.com/It-dayeon/dockerswarm/blob/master/3-Make-Service.md)
+> `이전 단계로 돌아가기` : [Docker 설치하기](https://github.com/It-dayeon/dockerswarm/blob/master/1-Make-Docker.md)     
+> `다음 단계로 넘어가기` : [서비스 만들기](https://github.com/It-dayeon/dockerswarm/blob/master/3-Make-Service.md)
