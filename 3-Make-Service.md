@@ -24,8 +24,7 @@ manager로 만들었던 aws-node1에서 진행하도록 합니다.
 ```
 $ docker service create [OPTIONS] IMAGE [COMMAND] [ARG...]
 ```
-
-`예시`
+`예시`     
 ```
 ubuntu@aws-node1:~$ sudo docker service create --name web httpd
 
@@ -53,11 +52,13 @@ pfxfmfhouu7h        web.1               httpd:latest        aws-node1           
 만든 서비스를 복제해봅시다.  
 복제하는데는 여러 방법이 있습니다.  
 
-- = 기호를 사용하여 복제하기
+- = 기호를 사용하여 복제하기  
+
 `사용법`
 ```
 $ sudo docker service scale [service-name]=[replica-number]
 ```
+`예시`
 ```
 ubuntu@aws-node1:~$ sudo docker service scale web=3
 
@@ -68,7 +69,7 @@ overall progress: 3 out of 3 tasks
 3/3: running   [==================================================>] 
 verify: Service converged 
 ```
-복제되었는지 확인해보기
+`복제 확인`
 ```
 ubuntu@aws-node1:~$ sudo docker service ls
 
