@@ -2,7 +2,7 @@
 
 안녕하세요.
 
-AWS에서 EC2 인스턴스를 사용해서 Docker-Swarm을 만드는 방법을 배워보겠습니다.
+AWS에서 EC2 인스턴스를 사용해서 `Docker-Swarm`을 만드는 방법을 배워보겠습니다.
 
 우선 사용 전에, OS가 `Windows`인 경우에는 가상머신을 사용하는 방법을 권장드립니다.
 
@@ -74,12 +74,16 @@ Run "sudo yum update" to apply all updates.
 위의 예시에서 연결한 후에 나온 문구인 `Run "sudo yum update" to apply all updates.` 처럼  
 apply 모두를 업데이트 한 후에 docker를 설치해보도록 하겠습니다.
 
+#### Docker 설치하기
+
 ```
 [ec2-user@ip-172-31-18-132 ~]$ $ sudo yum -y upgrade
 [ec2-user@ip-172-31-18-132 ~]$ $ sudo yum -y install docker
 ```
 
 docker가 제대로 설치되었는지 확인해보겠습니다.
+
+#### 설치 확인하기
 
 ```
 [ec2-user@ip-172-31-18-132 ~]$ docker -v
@@ -88,12 +92,15 @@ Docker version 18.09.1, build 4c52b90
 
 설치되었으므로 이제 도커를 시작해보겠습니다.
 
+#### Docker 시작하기
+
 ```
 [ec2-user@ip-172-31-18-132 ~]$ sudo service docker start
 ```
 
 `usermod` 명령어를 사용하여 그룹에 사용자인 `ec2-user`를 추가합니다.
 
+#### 그룹에 사용자 추가하기
 ```
 [ec2-user@ip-172-31-18-132 ~]$ sudo usermod -aG docker ec2-user
 ```
@@ -108,11 +115,14 @@ Docker version 18.09.1, build 4c52b90
 
 설치 후에 `chmod` 명령어를 사용하여 디렉토리에 excute 권한을 추가합니다.
 
+#### 실행권한 추가하기
 ```
 [ec2-user@ip-172-31-18-132 ~]$ sudo chmod +x /usr/local/bin/docker-compose
 ```
 
 설치가 되었는지 확인해보겠습니다.
+
+#### 설치 확인하기
 
 ```
 [ec2-user@ip-172-31-18-132 ~]$ docker-compose -v
@@ -148,6 +158,8 @@ chmod +x "$HOME/bin/docker-machine.exe"
 ```
 
 컴퓨터의 OS에 맞게 다운을 받은 후에, 다운이 잘 되었는지 확인하여 보겠습니다.
+
+#### 
 
 ```
 [ec2-user@ip-172-31-18-132 ~]$ docker-machine -v
