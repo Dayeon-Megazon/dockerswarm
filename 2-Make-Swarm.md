@@ -104,9 +104,9 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 이제 남은 두개에 노드에 접속하여 보겠습니다.     
 접속 전에 AWS 사이트에서 EC2 인스턴스들의 보안그룹을 확인해봅니다.   
 
-위에서 만든 인스턴스인 aws-node1, aws-node2, aws-node3의 보안그룹인 `docker-machine`이 생성되었습니다.     
-AWS의 보안그룹으로 들어가서 `docker-machine`의 인바운드를 확인해보겠습니다.
-아래 표와 같이 **2377 포트**가 열려있어야 합니다.     
+위에서 만든 인스턴스인 aws-node1, aws-node2, aws-node3의 보안그룹인 `docker-machine`이 생성되었습니다.      
+AWS의 보안그룹으로 들어가서 `docker-machine`의 인바운드를 확인해보겠습니다.      
+아래 표와 같이 **2377 포트**가 열려있어야 합니다.       
 
 | 유형 | 프로토콜 | 포트 범위 | 소스 |
 | :---: | :---: | :---: | :---: |
@@ -140,8 +140,8 @@ ubuntu@aws-node3:~$ sudo docker swarm join \
 This node joined a swarm as a worker.
 ```
 
-노드들이 잘 연결되었는지 확인해봅시다.
-manager 노드인 **aws-node1**에 접속하여 확인할 수 있습니다.
+노드들이 잘 연결되었는지 확인해봅시다.      
+manager 노드인 **aws-node1**에 접속하여 확인할 수 있습니다.   
 
 #### Node 확인하기
 
