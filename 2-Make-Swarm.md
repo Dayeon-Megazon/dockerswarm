@@ -99,13 +99,14 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 > 다른 노드에 접속하여 command하면 됩니다.   
 
 
-## 2. 나머지 Node들을 Woker로 만들기
+## 2. 나머지 Node들을 Worker로 만들기
 
 이제 남은 두개에 노드에 접속하여 보겠습니다.     
 접속 전에 AWS 사이트에서 EC2 인스턴스들의 보안그룹을 확인해봅니다.   
 
 위에서 만든 인스턴스인 aws-node1, aws-node2, aws-node3의 보안그룹인 `docker-machine`이 생성되었습니다.     
-인바운드를 확인하여 아래 표와 같이 **2377 포트**가 열려있는지 확인해야 합니다.     
+AWS의 보안그룹으로 들어가서 `docker-machine`의 인바운드를 확인해보겠습니다.
+아래 표와 같이 **2377 포트**가 열려있어야 합니다.     
 
 | 유형 | 프로토콜 | 포트 범위 | 소스 |
 | :---: | :---: | :---: | :---: |
@@ -161,7 +162,7 @@ put1qu5xsd5ppol0uu5qkw26z     aws-node3           Ready               Active    
 
 > `배운 내용 복습 하기`   
 [1. Node중 하나를 Manager로 만들기](#1-node중-하나를-manager로-만들기)  
-[2. 나머지 Node들을 Woker로 만들기](#2-나머지-node들을-woker로-만들기)    
+[2. 나머지 Node들을 Worker로 만들기](#2-나머지-node들을-worker로-만들기)    
 
 > `이전 단계로 돌아가기` : [Docker 설치하기](https://github.com/It-dayeon/dockerswarm/blob/master/1-Make-Docker.md)     
 > `다음 단계로 넘어가기` : [서비스 만들기](https://github.com/It-dayeon/dockerswarm/blob/master/3-Make-Service.md)
