@@ -21,11 +21,11 @@
 서비스를 유지보수하는 `Rolling update` 를 테스트해보겠습니다.  
 우선 새로운 서비스를 만들어봅시다.
 
-### 사용법
+#### 사용법
 ```
 $ sudo docker service create --name [service-name] --replicas [replicas-number] --update-delay [update-task-time] [image-name] [command]
 ```
-### 예시
+#### 예시
 ```
 ubuntu@aws-node1:~$ sudo docker service create --name ping --replicas 4 --update-delay 10s alpine ping docker.com
 
@@ -47,7 +47,7 @@ verify: Service converged
 
 > [Deploy services to a swarm](https://docs.docker.com/engine/swarm/services/#configure-a-services-update-behavior)
 
-### 서비스가 잘 생성되었는지 확인
+#### 서비스가 잘 생성되었는지 확인
 ```
 ubuntu@aws-node1:~$ sudo docker service inspect --pretty ping
 
@@ -72,12 +72,12 @@ Service Mode:	Replicated
 
 시작 전에, Service의 Task 상태를 확인합니다.
 
-### 사용법
+#### 사용법
 ```
 $ sudo docker service ps [service-name]
 ```
 
-### 예시
+#### 예시
 ```
 ubuntu@aws-node1:~$ sudo docker service ps ping
 
@@ -92,7 +92,7 @@ i0sksqm6s065        ping.4              alpine:latest       aws-node1           
 서비스를 업데이트하면, 기존 서비스의 모든 것을 변경할 수 있습니다.  
 서비스를 업데이트하면 Docker는 컨테이너를 중지하고 새로운 구성으로 다시 시작하게 됩니다.
 
-### 업데이트 하기
+#### 업데이트 하기
 
 기존 이미지 대신 `alpine:3.7`을 사용하도록 update를 해보겠습니다.
 
@@ -108,7 +108,7 @@ overall progress: 4 out of 4 tasks
 verify: Service converged
 ```
 
-### 업데이트 확인하기
+#### 업데이트 확인하기
 ```
 ubuntu@aws-node1:~$ sudo docker service ps ping
 
@@ -139,11 +139,11 @@ Update를 한 것을 보면, 원래의 컨테이너가 `Shutdown` 된 것으로 
 
 이제 Rollback을 사용하여 보겠습니다.
 
-### 사용법
+#### 사용법
 ```
 $ docker service rollback [sevice-name]
 ```
-### 예시
+#### 예시
 ```
 ubuntu@aws-node1:~$ sudo docker service rollback ping
 
@@ -156,7 +156,7 @@ overall progress: rolling back update: 4 out of 4 tasks
 4/4: running   [>                                                  ] 
 verify: Service converged 
 ```
-### Rollback 확인
+#### Rollback 확인
 ```
 ubuntu@aws-node1:~$ sudo docker service ps ping
 
