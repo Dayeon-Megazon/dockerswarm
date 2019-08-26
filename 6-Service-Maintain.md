@@ -11,7 +11,11 @@
 ### 목차는 다음과 같습니다.
 
 [1. Woker Node 신분 상승시키기](#1-woker-node-신분-상승시키기)  
-[2. Down 상태로 전환하기](#2-down-상태로-전환하기)   
+[2. Leader Node를 Kill하기](#2-leader-node-kill하기)   
+[3. Manager Node를 Kill하기](#3-manager-node를-kill하기)
+[4. Manager Node를 3개 만들기](#4-manager-node를-3개-만들기)
+[5. Manager Node가 3개인 상태에서 kill 하기](#5-manager-node가-3개인-상태에서-kill-하기)
+[6. Force 옵션을 사용해서 강제로 균형맞추기](#6-force-옵션을-사용해서-강제로-균형맞추기)
 
 ---
 
@@ -50,7 +54,7 @@ hqkfbmk7byfsboh0w6v0wjspn     aws-node2           Ready               Active    
 sexjhrlvhuyxjgu6w5tuwfimk     aws-node3           Ready               Active                                  19.03.1
 ```
 
-`aws-node2`의 `MANAGER STATUS` 항목에 `Reachable`이라고 추가되었습니다.
+`aws-node2`의 `MANAGER STATUS` 항목에 `Reachable`이라고 추가되었습니다.      
 > Reachable : 도달 할 수 있는, 닿을 수 있는 ...
 
 #### Node 정보 확인해보기
@@ -106,13 +110,13 @@ ubuntu@aws-node1:~$ sudo docker info
    172.31.11.179:2377
 ````
 위의 정보에서 볼 수 있듯이,   
-`Manager` node의 수가 2개이고 `Manager Addresses`도 2개 인 것을 확인할 수 있습니다.
-위에서 확인한 `aws-node1`과 `aws-node2`의 Address와 같은 주소입니다. 
+`Manager` node의 수가 2개이고 `Manager Addresses`도 2개 인 것을 확인할 수 있습니다.     
+위에서 확인한 `aws-node1`과 `aws-node2`의 Address와 같은 주소입니다.    
 
-> worker인 `aws-node3`에서 docker info를 확인하면, manager가 아니므로 manager의 정보는 포함하지 않지만   
+> worker인 `aws-node3`에서 docker info를 확인하면, manager가 아니므로 manager의 정보는 포함하지 않지만    
 > `manager Address`는 포함하고 있습니다.
 
-## 2. Leader Node 죽이기
+## 2. Leader Node를 Kill하기
 
 원래의 docker-machine의 상태를 확인해봅시다.
 
@@ -167,10 +171,10 @@ hqkfbmk7byfsboh0w6v0wjspn     aws-node2           Ready               Active    
 sexjhrlvhuyxjgu6w5tuwfimk     aws-node3           Ready               Active                                  19.03.1
 ```
 
-원래 Leader였던 `aws-node1`가 Kill이 되었었기 때문에,    
+원래 Leader였던 `aws-node1`가 Kill이 되었었기 때문에,     
 Reachable 이었던 `aws-node2`가 `Leader`가 되었습니다.    
 
-하지만, aws-node1은 `Manager` 권한은 유지하고 있어 'Reachable' 상태가 되었습니다.
+하지만, aws-node1은 `Manager` 권한은 유지하고 있어 'Reachable' 상태가 되었습니다.   
 
 #### Service Task 확인
 ```
@@ -183,16 +187,16 @@ uqf4pqrsn2ux         \_ ping.3          alpine:latest       aws-node1           
 r1gbmn89ydhm        ping.4              alpine:latest       aws-node2           Running             Running 37 minutes ago               
 ```
 
-aws-node1이 실행하던 `ping.3`이 `shuntdown`이 되었으나,   
-aws-node1이 복구된 후에 다시 `Running` 되었습니다.
+aws-node1이 실행하던 `ping.3`이 `shuntdown`이 되었으나,    
+aws-node1이 복구된 후에 다시 `Running` 되었습니다.    
 
-챕터 #5와는 다르게,   
-다른 node가 일을 받아서 하지 않고 aws-node1이 복구된 후 다시 일을 받아서 하게 됩니다.
+챕터 #5와는 다르게,    
+다른 node가 일을 받아서 하지 않고 aws-node1이 복구된 후 다시 일을 받아서 하게 됩니다.  
 
 
-## 3. Manager Node 죽이기
+## 3. Manager Node를 Kill하기
 
-Leader는 아니지만 Manager의 역할을 하는 `aws-node1`을 다시 kill 해보겠습니다.
+Leader는 아니지만 Manager의 역할을 하는 `aws-node1`을 다시 kill 해보겠습니다.   
 
 #### Manager aws-node1 죽이기
 ```
@@ -211,7 +215,7 @@ aws-node1   -        amazonec2   Stopped                                     Unk
 aws-node2   -        amazonec2   Running   tcp://34.203.31.82:2376           Unknown   Unable to query docker version: Get https://34.203.31.82:2376/v1.15/version: x509: certificate is valid for 54.242.54.187, not 34.203.31.82
 aws-node3   -        amazonec2   Running   tcp://52.1.240.126:2376           Unknown   Unable to query docker version: Get https://52.1.240.126:2376/v1.15/version: x509: certificate is valid for 54.174.125.199, not 52.1.240.126
 ```
-aws-node1이 `Stopped` 된 상태인 것을 알 수 있습니다.
+aws-node1이 `Stopped` 된 상태인 것을 알 수 있습니다.    
 
 #### Manager node 살리기
 ```
@@ -233,8 +237,8 @@ ID                            HOSTNAME            STATUS              AVAILABILI
 hqkfbmk7byfsboh0w6v0wjspn     aws-node2           Ready               Active              Leader              19.03.1
 sexjhrlvhuyxjgu6w5tuwfimk     aws-node3           Ready               Active                                  19.03.1
 ```
-`aws-node1`은 Leader가 아닌 단순한 Manager의 역할이었습니다.  
-그래서 복구하여도 Leader의 권한을 받을 수 없지만, Manager의 역할은 그대로 부여받게 됩니다.  
+`aws-node1`은 Leader가 아닌 단순한 Manager의 역할이었습니다.    
+그래서 복구하여도 Leader의 권한을 받을 수 없지만, Manager의 역할은 그대로 부여받게 됩니다.    
 
 #### Service Task 확인
 ```
@@ -247,15 +251,15 @@ y2jp5lr8d0i7         \_ ping.3          alpine:latest       aws-node1           
 uqf4pqrsn2ux         \_ ping.3          alpine:latest       aws-node1           Shutdown            Failed 21 minutes ago    "No such container: ping.3.uqf…"   
 r1gbmn89ydhm        ping.4              alpine:latest       aws-node2           Running             Running 54 minutes ago              
 ```
-장애를 복구한 후에, aws-node1의 ping.3이 다시 Running 되었다는 것을 알 수 있습니다.
+장애를 복구한 후에, aws-node1의 ping.3이 다시 Running 되었다는 것을 알 수 있습니다.     
 
-그런데, aws-node1이 복구될때까지 
-ping.3은 다른 node가 작업하지않고 가만히 aws-node1을 기다리는 거라면 이것은 좋은 해결 방법은 아닙니다.
+그런데, aws-node1이 복구될때까지    
+ping.3은 다른 node가 작업하지않고 가만히 aws-node1을 기다리는 거라면 이것은 좋은 해결 방법은 아닙니다.    
 
-## 3. Manager node를 3개 만들기
+## 4. Manager Node를 3개 만들기
 
-Swarm의 가용성 환경의 지침에 따르면, Manager가 3개 이상인 경우 고가용성 환경에 적합하다고 합니다.
-그럼 aws-node3도 Manager로 만들어보겠습니다.
+Swarm의 가용성 환경의 지침에 따르면, Manager가 3개 이상인 경우 고가용성 환경에 적합하다고 합니다.    
+그럼 aws-node3도 Manager로 만들어보겠습니다.    
 
 #### aws-node3에 manager 권한 부여하기
 
@@ -269,7 +273,7 @@ hqkfbmk7byfsboh0w6v0wjspn     aws-node2           Ready               Active    
 sexjhrlvhuyxjgu6w5tuwfimk     aws-node3           Ready               Active              Reachable           19.03.1
 ```
 
-다음과 같이, 모든 node가 manager로 신분이 상승했습니다.
+다음과 같이, 모든 node가 manager로 신분이 상승했습니다.    
 
 #### service 복제본 3개 만들기
 
@@ -283,7 +287,7 @@ overall progress: 3 out of 3 tasks
 3/3: running   [==================================================>] 
 verify: Service converged 
 ```
-서비스 복제본 3개가 잘 만들어졌는지 확인해보겠습니다.
+서비스 복제본 3개가 잘 만들어졌는지 확인해보겠습니다.    
 
 #### service 생성 확인하기
 ```
@@ -293,9 +297,9 @@ suddl3r28391        ping.1              alpine:latest       aws-node2           
 3yg2hsr5fogx        ping.2              alpine:latest       aws-node3           Running             Running 2 minutes ago               
 tw78ddexdprw        ping.3              alpine:latest       aws-node1           Running             Running 2 minutes ago     
 ```
-## 4. Manager 3개인 상태에서 kill 하기
+## 5. Manager Node가 3개인 상태에서 kill 하기
 
-현재 Leader인 `aws-node2`를 kill 해보겠습니다.
+현재 Leader인 `aws-node2`를 kill 해보겠습니다.  
 ```
 [ec2-user@ip-172-31-18-132 ~]$ docker-machine kill aws-node2
 
@@ -305,7 +309,7 @@ Machine "aws-node2" was killed.
 
 #### Node 확인하기
 
-Leader를 죽인 후, node를 확인해보겠습니다.
+Leader를 죽인 후, node를 확인해보겠습니다.  
 ```
 ubuntu@aws-node1:~$ sudo docker node ls
 
@@ -314,8 +318,8 @@ ID                            HOSTNAME            STATUS              AVAILABILI
 hqkfbmk7byfsboh0w6v0wjspn     aws-node2           Down                Active              Unreachable         19.03.1
 sexjhrlvhuyxjgu6w5tuwfimk     aws-node3           Ready               Active              Leader              19.03.1
 ```
-Leader가 Down 되어서 aws-node3이 Leader의 권한을 부여받았습니다.  
-현재 죽은 상태인 aws-node2는 `Unreachable` 상태가 되었습니다.  
+Leader가 Down 되어서 aws-node3이 Leader의 권한을 부여받았습니다.    
+현재 죽은 상태인 aws-node2는 `Unreachable` 상태가 되었습니다.    
 
 #### Task 상태 확인하기
 ```
@@ -326,10 +330,10 @@ suddl3r28391         \_ ping.1          alpine:latest       aws-node2           
 3yg2hsr5fogx        ping.2              alpine:latest       aws-node3           Running             Running 8 minutes ago               
 tw78ddexdprw        ping.3              alpine:latest       aws-node1           Running             Running 8 minutes ago            
 ```
-위에서 했던 실습과는 조금 다릅니다.
-aws-node2가 `shutdown` 되었는데 task가 node를 기다리지 않고 다른 노드인 `aws-node1`이 `ping.1`의 업무를 하고 있습니다.
-그런데, 조금 이상한 부분은 아직 `CURRENT STATE`가 `Running` 입니다.
-
+위에서 했던 실습과는 조금 다릅니다.    
+aws-node2가 `shutdown` 되었는데 task가 node를 기다리지 않고 다른 노드인 `aws-node1`이 `ping.1`의 업무를 하고 있습니다.    
+그런데, 조금 이상한 부분은 아직 `CURRENT STATE`가 `Running` 입니다.   
+  
 ---
 
 #### 죽은 Node 살리기
@@ -362,19 +366,19 @@ suddl3r28391         \_ ping.1          alpine:latest       aws-node2           
 3yg2hsr5fogx        ping.2              alpine:latest       aws-node3           Running             Running 15 minutes ago              
 tw78ddexdprw        ping.3              alpine:latest       aws-node1           Running             Running 15 minutes ago    
 ```
-앞에서 확인한 Task와 똑같지만, `CURRENT STATE`가 변하였습니다.
-`Running`에서 `Shutdown`으로 변하였습니다.
+앞에서 확인한 Task와 똑같지만, `CURRENT STATE`가 변하였습니다.     
+`Running`에서 `Shutdown`으로 변하였습니다.    
 
-## 5. 억지로 균형맞추기
+## 6. Force 옵션을 사용해서 강제로 균형맞추기
 
-새로운 서비스를 생성하여보겠습니다.
+새로운 서비스를 생성하여보겠습니다.    
 
 > 참고 : [서비스 생성하기](https://github.com/It-dayeon/dockerswarm/blob/master/4-Rolling-Test.md#1-update-할-서비스-생성하기)
 
 #### 새로운 서비스 생성하기
 
-새로운 서비스를 생성하면, 가용하였던 모든 Node를 이용하여 작업을 할당하게 됩니다.
-그래서 새로운 서비스를 하나 생성해보도록 하겠습니다.
+새로운 서비스를 생성하면, 가용하였던 모든 Node를 이용하여 작업을 할당하게 됩니다.    
+그래서 새로운 서비스를 하나 생성해보도록 하겠습니다.    
 ```
 ubuntu@aws-node1:~$ sudo docker service create -q --name ping2 --replicas 3 alpine ping docker.com
 
@@ -388,7 +392,7 @@ sln6hwwf9sde        ping2.1             alpine:latest       aws-node2           
 wm9lwrnhby5w        ping2.2             alpine:latest       aws-node3           Running             Running about a minute ago    
 9ugwmrdnok92        ping2.3             alpine:latest       aws-node1           Running             Running about a minute ago    
 ```
-node에 골고루 작업 분배가 된 것을 볼 수 있습니다.
+node에 골고루 작업 분배가 된 것을 볼 수 있습니다.    
 
 #### 강제로 서비스를 update 시키기
 ```
@@ -401,7 +405,7 @@ overall progress: 3 out of 3 tasks
 3/3: running   [==================================================>] 
 verify: Service converged 
 ```
-`--force` 옵션을 사용하여 강제로 `ping` 서비스를 update 시켜서 정리합니다.
+`--force` 옵션을 사용하여 강제로 `ping` 서비스를 update 시켜서 정리합니다.    
 
 #### 서비스 부하 균형 확인하기
 
@@ -417,7 +421,7 @@ h1biwmz81icn        ping.3              alpine:latest       aws-node1           
 tw78ddexdprw         \_ ping.3          alpine:latest       aws-node1           Shutdown            Shutdown 39 seconds ago           
 ```
 aws-node1은 `ping.3` , aws-node2는 `ping.2`, aws-node3은 `ping.1`의 task를 맡게 되면서,  
-모두 골고루 일을 분배받아서 부하 균형이 맞춰지게 되었습니다.
+모두 골고루 일을 분배받아서 부하 균형이 맞춰지게 되었습니다.   
 
 --
 
