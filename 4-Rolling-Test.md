@@ -189,6 +189,6 @@ Rollback을 하여도 원래의 컨테이너로 돌아가는 것이 아닌, 새�
 
 
 > `이전 단계로 돌아가기` : [서비스 만들기](https://github.com/It-dayeon/dockerswarm/blob/master/3-Make-Service.md)     
-> `다음 단계로 넘어가기` : [서비스 유지보수하기](https://github.com/It-dayeon/dockerswarm/blob/master/5-Service-Maintain.md)
+> `다음 단계로 넘어가기` : [서비스 상태 전환하기](https://github.com/It-dayeon/dockerswarm/blob/master/5-Service-Transform.md)
 
 
