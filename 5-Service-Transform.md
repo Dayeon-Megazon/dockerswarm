@@ -23,7 +23,7 @@ Node를 유지보수하기 위해서, Node에서 실행되는 작업을 빼내�
 여러분께서는 이 작업을 안하셔도 괜찮습니다.
  
  > 참고 : 챕터 #3의 `3.서비스 지우기`와 `1. 서비스 만들기`   
- > [챕터 #3](https://github.com/It-dayeon/dockerswarm/blob/master/3-Make-Service.md)
+ > [챕터 #3 바로가기](https://github.com/It-dayeon/dockerswarm/blob/master/3-Make-Service.md)
 
 ---
 
@@ -266,6 +266,6 @@ tr3x8k809nbz        ping.7              alpine:latest       aws-node2           
 
 
 > `이전 단계로 돌아가기` : [서비스 Rolling-Test하기](https://github.com/It-dayeon/dockerswarm/blob/master/4-Rolling-Test.md)     
-> `다음 단계로 넘어가기` : [서비스 유지보수하기](https://github.com/It-dayeon/dockerswarm/blob/master/6-Service-Maintain.md)
+> `다음 단계로 넘어가기` : [고가용성 하기](https://github.com/It-dayeon/dockerswarm/blob/master/6-Service-HA.md)
 
 
