@@ -109,7 +109,7 @@ no such service: web
 
 `web` 이라는 서비스를 찾을 수 없다고 나오는 것을 보아, 잘 지워진 것을 확인할 수 있습니다.
 
-## 4. 서비스 Update 하기
+## 4. Update 할 서비스 생성하기
 
 서비스를 유지보수하는 Rolling update 를 테스트해보겠습니다.  
 우선 새로운 서비스를 만들어봅시다.
@@ -156,7 +156,7 @@ Service Mode:	Replicated
  Args:		ping docker.com 
  Init:		false
 ```
-서비스 생성 시 입력했던, `Name`, `Replicas`, `Delay` `Image` 옵션이 잘 들어간 것을 확인할 수 있습니다. 
+서비스 생성 시 입력했던, `Name`, `Replicas`, `Delay`, `Image` 옵션이 잘 들어간 것을 확인할 수 있습니다. 
 
 ---
 
