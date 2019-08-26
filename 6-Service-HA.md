@@ -331,8 +331,9 @@ suddl3r28391         \_ ping.1          alpine:latest       aws-node2           
 tw78ddexdprw        ping.3              alpine:latest       aws-node1           Running             Running 8 minutes ago            
 ```
 위에서 했던 실습과는 조금 다릅니다.    
-aws-node2가 `shutdown` 되었는데 task가 node를 기다리지 않고 다른 노드인 `aws-node1`이 `ping.1`의 업무를 하고 있습니다.    
-그런데, 조금 이상한 부분은 아직 `CURRENT STATE`가 `Running` 입니다.   
+aws-node2가 `shutdown` 되었는데 task가 node를 기다리지 않고    
+다른 노드인 `aws-node1`이 `ping.1`의 업무를 하고 있습니다.    
+그런데, 조금 이상한 부분은 아직 `CURRENT STATE`가 `Running` 이라는 입니다.   
   
 ---
 
