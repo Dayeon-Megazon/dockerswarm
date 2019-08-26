@@ -45,14 +45,14 @@ AWS 사이트에 들어가서 새로운 EC2 인스턴스를 하나 만들어 봅
 
 인스턴스에 엑세스하는 방법을 그대로 따라합니다.
 
-`연결 방법`
+#### 연결 방법
 
 ```
 $ chmod 400 [key-pair-path]
 $ sudo ssh -i "key-pair-path" ec2-user@<instance-address>
 ```
 
-`예시`
+#### 예시
 
 ```
 $ chmod 400 dayeon_docker.pem
@@ -159,7 +159,7 @@ docker-machine version 0.16.0, build 702c267f
 우선 AWS를 드라이버로 사용하기 위하여, 환경변수를 추가하여보겠습니다.  
 AWS CLI가 AWS와 상호 작용하기 위해 사용하는 설정을 구성해보도록 하겠습니다.
 
-`사용법`
+#### 사용법
 
 ```
 AWS Access Key ID [None]: [your-AWS-Access-Key-ID]
@@ -168,7 +168,7 @@ Default region name [None]: ap-northeast-2
 Default output format [None]: 
 ```
 
-`예시`
+#### 예시
 
 ```
 [ec2-user@ip-172-31-18-132 ~]$ aws configure
@@ -186,13 +186,13 @@ Output format은 지정하지 않고 `엔터키` 를 눌러서 `none` 상태를 
 Docker-machine을 사용해서 인스턴스 노드를 생성해보겠습니다.  
 원하는 node의 이름을 정해서 **최소한 노드를 3개** 생성하도록 하겠습니다.
 
-`사용법`
+#### 사용법
 
 ```
 $ docker-machine create --driver amazonec2 [node-name]
 ```
 
-`예시`
+#### 예시
 
 ```
 [ec2-user@ip-172-31-18-132 ~]$ docker-machine create --driver amazonec2 aws-node1
