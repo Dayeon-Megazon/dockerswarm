@@ -97,12 +97,12 @@ web
 ```
 `service 목록 확인`
 ```
-$ sudo docker service ls
+ubuntu@aws-node1:~$ sudo docker service ls
 ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
 ```
 `web이라는 서비스의 상태 확인`
 ```
-$ sudo docker service ps web
+ubuntu@aws-node1:~$ sudo docker service ps web
 
 no such service: web
 ```
@@ -111,6 +111,52 @@ no such service: web
 
 ## 4. 서비스 Update 하기
 
+서비스를 유지보수하는 Rolling update 를 테스트해보겠습니다.  
+우선 새로운 서비스를 만들어봅시다.
+
+`사용법`
+```
+$ sudo docker service create --name [service-name] --replicas [replicas-number] --update-delay [update-task-time] [image-name] [command]
+```
+`예시`
+```
+ubuntu@aws-node1:~$ sudo docker service create --name ping --replicas 4 --update-delay 10s alpine ping docker.com
+
+pzooezxk56himwmece2ixchic
+overall progress: 4 out of 4 tasks 
+1/4: running   
+2/4: running   
+3/4: running   
+4/4: running   
+verify: Service converged 
+```
+
+* `--name` : service의 이름을 정해주는 옵션으로 여기서는 `ping`이라는 이름을 사용했습니다.
+* `--replicas` : 생성할 서비스를 복제하는 옵션으로 여기서는 `4`개를 복제하겠습니다.
+* `--update-delay` : 생성할 서비스에 대해 Update 진행시, 각 Task에 대해서 Update하는 동안   
+                      일정한 시간 간격을 두도록 설정하는 옵션입니다. 여기서는 `10초`를 간격으로 두도록 설정했습니다.
+          
+* `alpine` : ping이라는 이름의 서비스를 만들 때, `alpine` 이라는 이미지를 사용합니다. 그 이후 뒤의 명령을 실행합니다.                   
+
+> [Deploy services to a swarm](https://docs.docker.com/engine/swarm/services/#configure-a-services-update-behavior)
+
+`서비스가 잘 생성되었는지 확인`
+```
+ubuntu@aws-node1:~$ sudo docker service inspect --pretty ping
+
+ID:		pzooezxk56himwmece2ixchic
+Name:		ping
+Service Mode:	Replicated
+ Replicas:	4
+ Delay:		10s
+ .
+ .
+ ContainerSpec:
+ Image:		alpine:latest@sha256:72c42ed48c3a2db31b7dafe17d275b634664a708d901ec9fd57b1529280f01fb
+ Args:		ping docker.com 
+ Init:		false
+```
+서비스 생성 시 입력했던, `Name`, `Replicas`, `Delay` `Image` 옵션이 잘 들어간 것을 확인할 수 있습니다. 
 
 ---
 
