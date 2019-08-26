@@ -159,7 +159,7 @@ chmod +x "$HOME/bin/docker-machine.exe"
 
 컴퓨터의 OS에 맞게 다운을 받은 후에, 다운이 잘 되었는지 확인하여 보겠습니다.
 
-#### 
+#### 설치 확인하기
 
 ```
 [ec2-user@ip-172-31-18-132 ~]$ docker-machine -v
