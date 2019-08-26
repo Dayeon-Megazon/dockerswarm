@@ -10,8 +10,8 @@
 
 ### 목차는 다음과 같습니다.
 
-[1. Woker Node 신분 상승시키기](#1-woker-node-신분-상승시키기)  
-[2. Leader Node를 Kill하기](#2-leader-node-kill하기)   
+[1. Woker Node를 신분 상승시키기](#1-woker-node를-신분-상승시키기)  
+[2. Leader Node를 Kill하기](#2-leader-node를-kill하기)   
 [3. Manager Node를 Kill하기](#3-manager-node를-kill하기)   
 [4. Manager Node를 3개 만들기](#4-manager-node를-3개-만들기)    
 [5. Manager Node가 3개인 상태에서 kill 하기](#5-manager-node가-3개인-상태에서-kill-하기)    
