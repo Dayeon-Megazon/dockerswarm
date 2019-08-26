@@ -266,6 +266,6 @@ tr3x8k809nbz        ping.7              alpine:latest       aws-node2           
 
 
 > `이전 단계로 돌아가기` : [서비스 Rolling-Test하기](https://github.com/It-dayeon/dockerswarm/blob/master/4-Rolling-Test.md)     
-> `다음 단계로 넘어가기` : [고가용성 하기](https://github.com/It-dayeon/dockerswarm/blob/master/6-Service-HA.md)
+> `다음 단계로 넘어가기` : [고가용성 테스트하기](https://github.com/It-dayeon/dockerswarm/blob/master/6-Service-HA.md)
 
 
