@@ -21,11 +21,11 @@
 manager로 만들었던 aws-node1에서 진행하도록 합니다.   
 이 노드에서 서비스를 만들어봅시다.
 
-`사용법`
+#### 사용법
 ```
 $ docker service create [OPTIONS] IMAGE [COMMAND] [ARG...]
 ```
-`예시`     
+#### 예시     
 ```
 ubuntu@aws-node1:~$ sudo docker service create --name web httpd
 
@@ -34,14 +34,14 @@ overall progress: 1 out of 1 tasks
 1/1: running   [==================================================>] 
 verify: Service converged 
 ```
-서비스가 잘 생성되었는지 확인해보겠습니다.
+### 서비스가 잘 생성되었는지 확인
 ```
 ubuntu@aws-node1:~$ sudo docker service ls
 
 ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
 i7pbste6l5f0        web                 replicated          1/1                 httpd:latest        
 ````
-생성한 서비스 web의 상태정보도 확인해보겠습니다.
+#### 생성한 서비스 web의 상태정보도 확인
 ```
 ubuntu@aws-node1:~$ sudo docker service ps web
 ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE           ERROR       
@@ -50,11 +50,11 @@ pfxfmfhouu7h        web.1               httpd:latest        aws-node1           
 
 ## 2. 서비스 복제하기
 
-`사용법`
+#### 사용법
 ```
 $ sudo docker service scale [service-name]=[replicas-number]
 ```
-`예시`
+#### 예시
 ```
 ubuntu@aws-node1:~$ sudo docker service scale web=3
 
@@ -65,14 +65,14 @@ overall progress: 3 out of 3 tasks
 3/3: running   [==================================================>] 
 verify: Service converged 
 ```
-`복제확인`
+#### 복제확인
 ```
 ubuntu@aws-node1:~$ sudo docker service ls
 
 ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
 i7pbste6l5f0        web                 replicated          3/3                 httpd:latest        
 ```
-`상태확인`
+#### 상태확인
 ```
 ubuntu@aws-node1:~$ sudo docker service ps web
 
@@ -86,21 +86,21 @@ mkdc14bvys8l        web.3               httpd:latest        aws-node2           
 
 위에서 만든 `web` 이라는 서비스를 지워보도록 하겠습니다.
 
-`사용법`
+#### 사용법
 ```
 $ docker service rm SERVICE [SERVICE...]
 ```
-`예시`
+#### 예시
 ```
 ubuntu@aws-node1:~$ sudo docker service rm web
 web
 ```
-`service 목록 확인`
+#### service 목록 확인
 ```
 ubuntu@aws-node1:~$ sudo docker service ls
 ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
 ```
-`web이라는 서비스의 상태 확인`
+#### web이라는 서비스의 상태 확인
 ```
 ubuntu@aws-node1:~$ sudo docker service ps web
 
@@ -112,7 +112,7 @@ no such service: web
 ---
 
 `Service`를 만드는 기본 단계를 모두 완료하셨습니다!     
-다음 단계에서는 오늘 만든 Service를 가지고 **유지보수**를 하는 방법에 대해 배워보겠습니다.
+다음 단계에서는 오늘 만든 Service를 가지고 **Rollong Test**를 하는 방법에 대해 배워보겠습니다.
 
 > `배운 내용 복습 하기`   
 [1. 서비스 만들기](#1-서비스-만들기)  
@@ -120,7 +120,7 @@ no such service: web
 [3. 서비스 지우기](#3-서비스-지우기)
 
 > `이전 단계로 돌아가기` : [Docker-Swarm 만들기](https://github.com/It-dayeon/dockerswarm/blob/master/2-Make-Swarm.md)     
-> `다음 단계로 넘어가기` : [서비스 유지보수하기](https://github.com/It-dayeon/dockerswarm/blob/master/4-Maintain-Service.md)
+> `다음 단계로 넘어가기` : [서비스 Rolling-Test하기](https://github.com/It-dayeon/dockerswarm/blob/master/4-Rolling-Test.md)
 
 
 
