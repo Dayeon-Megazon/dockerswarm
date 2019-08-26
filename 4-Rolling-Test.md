@@ -68,7 +68,7 @@ Service Mode:	Replicated
 
 > 서비스 생성 시 입력했던, `Name`, `Replicas`, `Delay`, `Image` 옵션이 잘 들어간 것을 확인할 수 있습니다. 
 
-## 5. Service Update 시작하기
+## 2. Service Update 시작하기
 
 시작 전에, Service의 Task 상태를 확인합니다.
 
@@ -129,7 +129,7 @@ Update를 한 것을 보면, 원래의 컨테이너가 `Shutdown` 된 것으로 
 
 정리하자면, `Update`는 새로운 컨테이너를 준비한 후에 기존의 컨테이너를 Shutdown 시키고 새로운 컨테이너를 실행한다고 할 수 있습니다.
 
-## 6. Service를 원래 모습으로 Rollback 하기
+## 3. Service를 원래 모습으로 Rollback 하기
 
 원래 모습으로 Rollback 한다는 말은 원래 모습으로 Update 한다는 의미와 비슷합니다. 
 
@@ -305,15 +305,16 @@ gmj46hh8xkdb        ping.5              alpine:latest       aws-node3           
 
 ---
 
-`Service`를 만드는 기본 단계를 모두 완료하셨습니다!     
-다음 단계에서는 오늘 만든 Service를 가지고 **유지보수**를 하는 방법에 대해 배워보겠습니다.
+`Rolling test` 기본 단계를 모두 완료하셨습니다!     
+다음 단계에서는 서비스를 **유지보수**를 하는 방법에 대해 배워보겠습니다.
 
 > `배운 내용 복습 하기`   
-[1. 서비스 만들기](#1-서비스-만들기)  
-[2. 서비스 복제하기](#2-서비스-복제하기)   
-[3. 서비스 지우기](#3-서비스-지우기)
+[1. Update 할 서비스 생성하기](#1-update-할-서비스-생성하기)  
+[2. Service Update 시작하기](#2-service-update-시작하기)   
+[3. Service를 원래 모습으로 Rollback 하기](#3-service를-원래-모습으로-rollback-하기)
 
-> `이전 단계로 돌아가기` : [Docker-Swarm 만들기](https://github.com/It-dayeon/dockerswarm/blob/master/2-Make-Swarm.md)     
-> `다음 단계로 넘어가기` : [서비스 유지보수하기](https://github.com/It-dayeon/dockerswarm/blob/master/4-Maintain-Service.md)
+
+> `이전 단계로 돌아가기` : [서비스 만들기](https://github.com/It-dayeon/dockerswarm/blob/master/2-Make-Swarm.md)     
+> `다음 단계로 넘어가기` : [서비스 유지보수하기](https://github.com/It-dayeon/dockerswarm/blob/master/5-Service-Maintain.md)
 
 
