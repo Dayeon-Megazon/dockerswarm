@@ -46,12 +46,12 @@ aws-node3   -        amazonec2   Running   tcp://54.174.125.199:2376           v
 
 그렇다면, `manager`로 사용할 **aws-node1**에 접속하도록 하겠습니다.    
 
-`사용법`
+#### 사용법
 ```
 $ docker-machine ssh [manager-node-name]
 ```
 
-`예시`
+#### 예시
 
 ```
 [ec2-user@ip-172-31-18-132 ~]$ docker-machine ssh aws-node1
@@ -67,12 +67,12 @@ ubuntu@aws-node1:~$
 ```
 **aws-node1**에 접속한 후에 이 노드를 `manager`로 만들겠습니다.   
 
-`사용법`
+#### 사용법
 
 ```
 $ sudo docker swarm init --advertise-addr [your-manager-ip]
 ```
-`예시`
+#### 예시
 
 ```
 ubuntu@aws-node1:~$ sudo docker swarm init --advertise-addr 3.81.226.168
@@ -113,7 +113,7 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 
 > Tip: 3개의 노드를 사용하므로 창을 3개를 띄워서 하면 편합니다.    
 
-`aws-node2에 접속해 worker로 만들기`   
+#### aws-node2에 접속해 worker로 만들기
 
 ```
 [ec2-user@ip-172-31-18-132 ~]$ docker-machine ssh aws-node2
@@ -125,7 +125,7 @@ ubuntu@aws-node2:~$ sudo docker swarm join \
 
 This node joined a swarm as a worker.
 ```
-`aws-node3에 접속해 worker로 만들기`    
+#### aws-node3에 접속해 worker로 만들기  
 ```
 [ec2-user@ip-172-31-18-132 ~]$ docker-machine ssh aws-node3
 .
