@@ -34,7 +34,7 @@ overall progress: 1 out of 1 tasks
 1/1: running   [==================================================>] 
 verify: Service converged 
 ```
-### 서비스가 잘 생성되었는지 확인
+#### 서비스가 잘 생성되었는지 확인
 ```
 ubuntu@aws-node1:~$ sudo docker service ls
 
