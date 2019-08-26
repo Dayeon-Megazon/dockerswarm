@@ -19,7 +19,7 @@
 
 ---
 
-## 1. Woker Node 신분 상승시키기
+## 1. Woker Node를 신분 상승시키기
 
 지금까지 저희가 실습한 노드의 상태는 다음과 같습니다.
 
@@ -425,14 +425,20 @@ aws-node1은 `ping.3` , aws-node2는 `ping.2`, aws-node3은 `ping.1`의 task를 
 
 --
 
-`서비스 유지보수` 기본 단계를 모두 완료하셨습니다!     
-다음 단계에서는 서비스에 **고가용성 테스트**를 하는 방법에 대해 배워보겠습니다.
+지금까지 Docker-Swarm의 기본 개념에 대한 학습을 완료하였습니다.
+학습을 진행하다 추가할 사항이나, 어려운 점이 있다면 댓글을 남겨주세요.
+감사합니다!
 
 > `배운 내용 복습 하기`   
-[1. Drain 상태로 전환하기](#1-drain-상태로-전환하기)  
-[2. Down 상태로 전환하기](#2-down-상태로-전환하기)   
+[1. Woker Node를 신분 상승시키기](#1-woker-node를-신분-상승시키기)  
+[2. Leader Node를 Kill하기](#2-leader-node를-kill하기)   
+[3. Manager Node를 Kill하기](#3-manager-node를-kill하기)   
+[4. Manager Node를 3개 만들기](#4-manager-node를-3개-만들기)    
+[5. Manager Node가 3개인 상태에서 kill 하기](#5-manager-node가-3개인-상태에서-kill-하기)    
+[6. Force 옵션을 사용해서 강제로 균형맞추기](#6-force-옵션을-사용해서-강제로-균형맞추기)   
+ 
 
 
-> `이전 단계로 돌아가기` : [서비스 Rolling-test하기](https://github.com/It-dayeon/dockerswarm/blob/master/4-Rolling-Test.md)     
-> `다음 단계로 넘어가기` : [서비스 유지보수하기](https://github.com/It-dayeon/dockerswarm/blob/master/5-Service-Maintain.md)
+> `이전 단계로 돌아가기` : [서비스 상태 전환하기](https://github.com/It-dayeon/dockerswarm/blob/master/5-Service-Transform.md)     
+> `초기화면으로 돌아가기` : [초기 화면](https://github.com/It-dayeon/dockerswarm)
 
