@@ -11,7 +11,7 @@
 ### 목차는 다음과 같습니다.
 
 [1. Node중 하나를 Manager로 만들기](#1-node중-하나를-manager로-만들기)  
-[2. 나머지 Node들을 Woker로 만들기](#2-나머지-node들을-woker로-만들기)   
+[2. 나머지 Node들을 Worker로 만들기](#2-나머지-node들을-worker로-만들기)   
   
 ---
 
@@ -31,6 +31,8 @@ Docker, Docker-compose, Docker-machine을 모두 설치하도록 합시다.
 저번 챕터에서 만들었던 노드들 기억 나시나요?   
 
 명령어를 사용해서 다시 한 번 확인하겠습니다.
+
+#### Node 확인하기
 
 ```
 [ec2-user@ip-172-31-18-132 ~]$ docker-machine ls
@@ -139,6 +141,8 @@ This node joined a swarm as a worker.
 
 노드들이 잘 연결되었는지 확인해봅시다.
 manager 노드인 **aws-node1**에 접속하여 확인할 수 있습니다.
+
+#### Node 확인하기
 
 ```
 ubuntu@aws-node1:~$ sudo docker node ls
