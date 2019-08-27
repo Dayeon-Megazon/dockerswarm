@@ -194,7 +194,7 @@ gmj46hh8xkdb        ping.5              alpine:latest       aws-node3           
 `ping.1`과 `ping.2`가 원래는 `aws-node2`에서 일을 하고 있었는데,   
 `aws-node3`이 이젠 ping.1과 ping.2의 task를 `Running` 하고 있는 것을 알 수 있습니다.
 
-**aws-node2에서 장애가 발생하자, 다른 노드가 장애를 감지하고 복구를 하였습니다.**
+aws-node2에서 장애가 발생하자, `다른 노드가 장애를 감지하고 복구를 하였습니다.`
 
 그럼 다시 aws-node2를 활성화시켜보겠습니다.
 
@@ -223,7 +223,7 @@ fpcd0pnbdrzb        ping.4              alpine:latest       aws-node1           
 gmj46hh8xkdb        ping.5              alpine:latest       aws-node3           Running             Running 52 minutes ago      
 ```
 다시 노드를 활성화시켰지만, 원래 하던 일을 다시 받을 수 없습니다.  
-위에서 실습한 'Drain' 상태 전환과 비슷합니다.   
+위에서 실습한 `Drain` 상태로 전환하는 과정과 비슷합니다.   
 
 #### 응용하기
 
