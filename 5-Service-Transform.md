@@ -61,8 +61,11 @@ ping이 node들에 잘 분산적으로 분배가 되어있는 것을 확인해�
 
 저는 `aws-node3`을 availability를 `Active`에서 `Drain`으로 전환해보도록 하겠습니다.
 
-#### Drain으로 전환
-
+#### Drian 사용법
+```
+$ docker node update --availability drain [your-worker-node-name]
+```
+#### Drain 사용 예시
 ```
 ubuntu@aws-node1:~$ sudo docker node update --availability drain aws-node3
 
@@ -99,7 +102,11 @@ fpcd0pnbdrzb        ping.4              alpine:latest       aws-node1           
 
 Node의 유지보수 작업을 끝냈다고 가정한 후에, 다시 Active 상태로 돌아가보겠습니다.
 
-#### Active로 상태 전환
+#### Active 사용법
+```
+$ docker node update --availability active [your-node-name]
+```
+#### Active로 상태 전환 예시 
 ```
 ubuntu@aws-node1:~$ sudo docker node update --availability active aws-node3
 
@@ -107,7 +114,7 @@ aws-node3
 ```
 `Active`로 상태를 전환한 후, 다시 task를 확인해보겠습니다.
 
-#### Active 상태 전환 
+#### Active 상태 전환 확인
 ```
 ubuntu@aws-node1:~$ sudo docker service ps ping
 
