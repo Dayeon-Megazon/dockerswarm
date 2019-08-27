@@ -2,9 +2,9 @@
 
 안녕하세요.
 
-챕터 #5에서 배운 Service로 상태 전환을 잘 해보셨나요?
+챕터 #5에서 배운 Service의 상태를 잘 전환해보셨나요?
 
-이번 챕터는 서비스를 고가용성 테스트 해보도록 합시다.
+이번 챕터에서는 `서비스 고가용성 테스트`를 해보도록 합시다.
 
 ---
 
@@ -21,7 +21,7 @@
 
 ## 1. Woker Node를 신분 상승시키기
 
-지금까지 저희가 실습한 노드의 상태는 다음과 같습니다.
+챕터 #5까지 저희가 실습한 노드의 상태는 다음과 같습니다.
 
 #### Node 상태 확인
 ```
@@ -35,8 +35,11 @@ sexjhrlvhuyxjgu6w5tuwfimk     aws-node3           Ready               Active    
 여기서 보면 `Leader`는 `aws-node1` 하나입니다.   
 `aws-node2`를 승진시켜보겠습니다.
 
-#### aws-node2를 manager로 승진시키기
-
+#### worker를 manager로 승진시키기는 법
+```
+$ docker node promote [your-worker-node-name]
+```
+#### worker를 manager로 승진시키기는 예시
 ```
 ubuntu@aws-node1:~$ sudo docker node promote aws-node2
 
@@ -57,7 +60,15 @@ sexjhrlvhuyxjgu6w5tuwfimk     aws-node3           Ready               Active    
 `aws-node2`의 `MANAGER STATUS` 항목에 `Reachable`이라고 추가되었습니다.      
 > Reachable : 도달 할 수 있는, 닿을 수 있는 ...
 
-#### Node 정보 확인해보기
+#### Node 정보 확인해 보는 방법
+```
+$ docker node inspect [your-node-name]
+$ docker node inspect --pretty [your-node-name] 
+```
+정보를 보는 명령은 `inspect`를 사용하면 됩니다.
+하지만, 정보가 너무 많고 원하는 정보를 쉽게 파악하기 어려워 `--pretty` 옵션을 사용하면 보기 좋게 나옵니다.
+
+#### Node 정보 확인해보는 예시
 
 * `aws-node1` 정보를 확인해보면,
 ```
@@ -90,7 +101,7 @@ Manager Status:
 worker 였을때는 없던 `Manager Status`가 생성되었습니다.    
 Manager 역할에 도달할 수는(Reachable) 있지만, 진정한 리더는 아닌 것을 확인할 수 있습니다.
 
-#### Docker-Engine 관점에서 정보 확인
+#### Docker-Engine 관점에서 docker의 정보 확인
 
 ````
 ubuntu@aws-node1:~$ sudo docker info
@@ -131,8 +142,13 @@ aws-node3   -        amazonec2   Running   tcp://52.1.240.126:2376           Unk
 ```
 이 상태에서 Leader인 aws-node1을 kill하도록 하겠습니다.
 
-#### Leader Node 
+#### Node Kill 하는 방법
+```
+$ docker-machine kill [your-node-name]
+```
+`kill` 명령을 사용하면, docker-machine의 활동을 잠시 멈출 수 있습니다.  
 
+#### Leader Node Kill 예시
 ```
 [ec2-user@ip-172-31-18-132 ~]$ docker-machine kill aws-node1
 
@@ -395,7 +411,14 @@ wm9lwrnhby5w        ping2.2             alpine:latest       aws-node3           
 ```
 node에 골고루 작업 분배가 된 것을 볼 수 있습니다.    
 
-#### 강제로 서비스를 update 시키기
+#### 강제로 서비스를 update 시키는 방법
+```
+$ sudo docker service update --force [service-name]
+```
+`update` 명령을 사용하며 `--force` 옵션을 사용하면,   
+변경이 필요하지 않은 경우에도 업데이트를 강제로 적용하게 됩니다.
+
+#### 강제로 서비스를 update 시키기 예시
 ```
 ubuntu@aws-node1:~$ sudo docker service update --force ping
 
