@@ -65,7 +65,7 @@ sexjhrlvhuyxjgu6w5tuwfimk     aws-node3           Ready               Active    
 $ docker node inspect [your-node-name]
 $ docker node inspect --pretty [your-node-name] 
 ```
-정보를 보는 명령은 `inspect`를 사용하면 됩니다.
+정보를 보는 명령은 `inspect`를 사용하면 됩니다.      
 하지만, 정보가 너무 많고 원하는 정보를 쉽게 파악하기 어려워 `--pretty` 옵션을 사용하면 보기 좋게 나옵니다.
 
 #### Node 정보 확인해보는 예시
