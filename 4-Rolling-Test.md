@@ -80,12 +80,11 @@ $ sudo docker service ps [service-name]
 #### 예시
 ```
 ubuntu@aws-node1:~$ sudo docker service ps ping
-
-ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE         ERROR
-pdwny75k5s0p        ping.1              alpine:latest       aws-node1           Running             Running 2 hours ago
-pnj4kv2zro9s        ping.2              alpine:latest       aws-node1           Running             Running 2 hours ago
-xm65csdjssu9        ping.3              alpine:latest       aws-node1           Running             Running 2 hours ago
-i0sksqm6s065        ping.4              alpine:latest       aws-node1           Running             Running 2 hours ago             
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE            ERROR       
+ujvf0wlrymht        ping.1              alpine:latest       aws-node1           Running             Running 43 seconds ago       
+6r1v6kyf67rg        ping.2              alpine:latest       aws-node2           Running             Running 42 seconds ago       
+7j97nj3ilmbv        ping.3              alpine:latest       aws-node2           Running             Running 42 seconds ago       
+ok5zuc4smhqt        ping.4              alpine:latest       aws-node3           Running             Running 43 seconds ago           
 ```
 
 이제 서비스를 업데이트 해보겠습니다.   
@@ -101,26 +100,25 @@ ubuntu@aws-node1:~$ sudo docker service update --image alpine:3.7 ping
 
 ping
 overall progress: 4 out of 4 tasks 
-1/4: running   
-2/4: running   
-3/4: running   
-4/4: running   
+1/4: running   [==================================================>] 
+2/4: running   [==================================================>] 
+3/4: running   [==================================================>] 
+4/4: running   [==================================================>] 
 verify: Service converged
 ```
 
 #### 업데이트 확인하기
 ```
 ubuntu@aws-node1:~$ sudo docker service ps ping
-
 ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE                 ERROR 
-ja65a33k4scq        ping.1              alpine:3.7          aws-node1           Running             Running 40 seconds ago
-pdwny75k5s0p         \_ ping.1          alpine:latest       aws-node1           Shutdown            Shutdown 41 seconds ago
-e2cln5xgelmq        ping.2              alpine:3.7          aws-node1           Running             Running about a minute ago
-pnj4kv2zro9s         \_ ping.2          alpine:latest       aws-node1           Shutdown            Shutdown about a minute ago
-zcsvb9lhbzuf        ping.3              alpine:3.7          aws-node1           Running             Running about a minute ago
-xm65csdjssu9         \_ ping.3          alpine:latest       aws-node1           Shutdown            Shutdown about a minute ago
-vr34difvoc8s        ping.4              alpine:3.7          aws-node1           Running             Running about a minute ago
-i0sksqm6s065         \_ ping.4          alpine:latest       aws-node1           Shutdown            Shutdown about a minute ago       
+wd48w9u3h3gx        ping.1              alpine:3.7          aws-node1           Running             Running 32 seconds ago           
+ujvf0wlrymht         \_ ping.1          alpine:latest       aws-node1           Shutdown            Shutdown 33 seconds ago          
+34tpm4819ccu        ping.2              alpine:3.7          aws-node1           Running             Running about a minute ago       
+6r1v6kyf67rg         \_ ping.2          alpine:latest       aws-node2           Shutdown            Shutdown about a minute ago      
+ro9m6uxjzlvg        ping.3              alpine:3.7          aws-node2           Running             Running about a minute ago       
+7j97nj3ilmbv         \_ ping.3          alpine:latest       aws-node2           Shutdown            Shutdown about a minute ago      
+5uvpdoztqtrd        ping.4              alpine:3.7          aws-node3           Running             Running 55 seconds ago           
+ok5zuc4smhqt         \_ ping.4          alpine:latest       aws-node3           Shutdown            Shutdown 55 seconds ago            
 ```
 모든 Task의 image가 `alpine:3.7`로 변경된 것을 확인할 수 있습니다.
 
@@ -159,20 +157,19 @@ verify: Service converged
 #### Rollback 확인
 ```
 ubuntu@aws-node1:~$ sudo docker service ps ping
-
-ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE             ERROR     
-pion0shu98g8        ping.1              alpine:latest       aws-node1           Running             Running 11 minutes ago
-ja65a33k4scq         \_ ping.1          alpine:3.7          aws-node1           Shutdown            Shutdown 11 minutes ago
-pdwny75k5s0p         \_ ping.1          alpine:latest       aws-node1           Shutdown            Shutdown 16 minutes ago
-v1dphozvsa53        ping.2              alpine:latest       aws-node1           Running             Running 12 minutes ago
-e2cln5xgelmq         \_ ping.2          alpine:3.7          aws-node1           Shutdown            Shutdown 12 minutes ago
-pnj4kv2zro9s         \_ ping.2          alpine:latest       aws-node1           Shutdown            Shutdown 17 minutes ago
-2d1uayoyq1hj        ping.3              alpine:latest       aws-node1           Running             Running 11 minutes ago
-zcsvb9lhbzuf         \_ ping.3          alpine:3.7          aws-node1           Shutdown            Shutdown 11 minutes ago
-xm65csdjssu9         \_ ping.3          alpine:latest       aws-node1           Shutdown            Shutdown 17 minutes ago
-bqmfnrf0jww3        ping.4              alpine:latest       aws-node1           Running             Running 12 minutes ago
-vr34difvoc8s         \_ ping.4          alpine:3.7          aws-node1           Shutdown            Shutdown 12 minutes ago
-i0sksqm6s065         \_ ping.4          alpine:latest       aws-node1           Shutdown            Shutdown 17 minutes ago            
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE                 ERROR 
+06w8926jif67        ping.1              alpine:latest       aws-node2           Running             Running 29 seconds ago              
+wd48w9u3h3gx         \_ ping.1          alpine:3.7          aws-node1           Shutdown            Shutdown 30 seconds ago            
+ujvf0wlrymht         \_ ping.1          alpine:latest       aws-node1           Shutdown            Shutdown 2 minutes ago             
+3ft3avcjx0o4        ping.2              alpine:latest       aws-node1           Running             Running about a minute ago         
+34tpm4819ccu         \_ ping.2          alpine:3.7          aws-node1           Shutdown            Shutdown about a minute ago        
+6r1v6kyf67rg         \_ ping.2          alpine:latest       aws-node2           Shutdown            Shutdown 3 minutes ago             
+edu40xkmwwck        ping.3              alpine:latest       aws-node2           Running             Running 41 seconds ago             
+ro9m6uxjzlvg         \_ ping.3          alpine:3.7          aws-node2           Shutdown            Shutdown 41 seconds ago            
+7j97nj3ilmbv         \_ ping.3          alpine:latest       aws-node2           Shutdown            Shutdown 3 minutes ago             
+olytmrcjbf8l        ping.4              alpine:latest       aws-node3           Running             Running 53 seconds ago             
+5uvpdoztqtrd         \_ ping.4          alpine:3.7          aws-node3           Shutdown            Shutdown 54 seconds ago            
+ok5zuc4smhqt         \_ ping.4          alpine:latest       aws-node3           Shutdown            Shutdown 3 minutes ago   
 ```
 Update와 비슷한 과정으로 보여집니다.   
 Rollback을 하여도 원래의 컨테이너로 돌아가는 것이 아닌, 새로운 컨테이너가 실행됩니다.   
