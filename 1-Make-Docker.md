@@ -74,13 +74,17 @@ Run "sudo yum update" to apply all updates.
 위의 예시에서 연결한 후에 나온 문구인 `Run "sudo yum update" to apply all updates.` 처럼  
 apply 모두를 업데이트 한 후에 docker를 설치해보도록 하겠습니다.
 
+- *update* : 패키지 저장소를 통해 업데이트 파일이 있는지 확인하는 명령어   
+- *upgrade* : 패키지를 새로운 파일로 업데이트 하는 명령어
+
+upgrade 명령어를 사용하여 패키지를 새로운 파일로 모두 업데이트 해보겠습니다.
+
 #### Docker 설치하기
 
 ```
 [ec2-user@ip-172-31-18-132 ~]$ $ sudo yum -y upgrade
 [ec2-user@ip-172-31-18-132 ~]$ $ sudo yum -y install docker
-```
-
+```    
 docker가 제대로 설치되었는지 확인해보겠습니다.
 
 #### 설치 확인하기
